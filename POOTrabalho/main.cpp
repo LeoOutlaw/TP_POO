@@ -14,52 +14,19 @@
 #include <cstdlib>
 #include <string>
 #include <iostream>
-#include <vector>
+
+#include "TextUI.h"
+#include "Carro.h"
 
 using namespace std;
 
-/*class Piloto{
-    string nome;
-    static int random;
- * 
- * 
- * 
-public:
-    Piloto(string * nome);
-};
-
-Piloto::Piloto(string * nome){
-    this->nome = nome;
-}
-
-class People{
-    Piloto * pilotos[5];
-public:
-    People(Piloto * piloto){
-        
-    }
-};
- */
-
 int main(int argc, char** argv) {
-    //Piloto a("Leonardo");
-    //People(&a);
-    vector <string> leo;
-    string a = "Leonardo Rocha";
-    string c = "Pedro Reis";
-    cout << a << endl;
-    char b = '0';
-    cout << b << endl;
-    a += b;
-    cout << a << endl;
-    leo.push_back(a);
-    leo.push_back(a);
-    cout << "LEonardo";
-    leo.pop_back();
-    leo.push_back(c);
-    for(int i=0; i< leo.size() ; i++){
-        cout << leo[i];
-    }
+   // TextUI * textUi = new TextUI();
+   // textUi->start();
+    Carro carr("ferrari","data", 0, 200);
+    cout << carr.getID() << endl;
+    Carro ddd("ferrari");
+    cout << ddd.getID();
     return 0;
 }
 

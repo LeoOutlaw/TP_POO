@@ -4,7 +4,12 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
-      <itemPath>Pilotos.h</itemPath>
+      <itemPath>Autodromo.h</itemPath>
+      <itemPath>Carro.h</itemPath>
+      <itemPath>Crazy.h</itemPath>
+      <itemPath>DVG.h</itemPath>
+      <itemPath>Piloto.h</itemPath>
+      <itemPath>TextUI.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -13,6 +18,9 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>Carro.cpp</itemPath>
+      <itemPath>Piloto.cpp</itemPath>
+      <itemPath>TextUI.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -37,7 +45,23 @@
       </toolsSet>
       <compileType>
       </compileType>
-      <item path="Pilotos.h" ex="false" tool="3" flavor2="0">
+      <item path="Autodromo.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Carro.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Carro.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Crazy.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="DVG.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Piloto.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Piloto.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TextUI.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TextUI.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -62,7 +86,23 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
-      <item path="Pilotos.h" ex="false" tool="3" flavor2="0">
+      <item path="Autodromo.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Carro.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Carro.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Crazy.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="DVG.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Piloto.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Piloto.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="TextUI.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="TextUI.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>

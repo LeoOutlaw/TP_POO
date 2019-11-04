@@ -22,13 +22,15 @@ using namespace std;
 
 class Piloto{
     string  nome;
-    bool carro;                         //se esta a conduzir algum carro ou nao
-    char aux;
-    //int tipo;                           //tipo de condutor
+    string tipo;
+    bool carro;                         //se esta a conduzir algum carro ou nao                 
     int lembra_comecar;
 public:
-    Piloto( string nome);
+    Piloto(string tipo ,string nome);
     string getNome() const;
+    string getTipo() const;
+    Piloto & operator=(const Piloto & piloto);
+    void mostrarPiloto();
     ~Piloto();
 };
 

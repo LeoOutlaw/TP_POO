@@ -22,7 +22,7 @@
 using namespace std;
 
 class Carro {
-    //Piloto piloto;
+    Piloto * piloto;
     string marca;
     string modelo;
     char id;
@@ -31,16 +31,23 @@ class Carro {
     int num_carga;
     int velocidade;
     bool estado;
+    bool trava;
+    bool acelera;
+    //int trata_carro;  // Saber o que o piloto esta a fazer, se esta a acelarar travar ou nem um nem outro
     bool sinal_emergencia;
     static char letra;
 public:
-    Carro(string marca, int cap_min = 0, int cap_max = 100);
-    Carro(string marca, string modelo, int cap_min = 0, int cap_max = 100);
+    Carro(string marca, string modelo = "modelo base", int cap_min = 0, int cap_max = 100);
     string getMarca() const;
     string getModelo() const;
     char getID() const;
+    bool getEstado();
+    bool getAcelera();
+    bool getTrava();
+    Piloto * getPiloto();
     int getVelocidade();
     void setVelocidade(int velocidade);
+    void mostrarCarro();
     ~Carro();
 };
 

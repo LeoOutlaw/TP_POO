@@ -1,7 +1,10 @@
-build/Debug/MinGW-Windows/main.o: main.cpp TextUI.h Carro.h Piloto.h
+build/Debug/MinGW-Windows/main.o: main.cpp TextUI.h DVG.h Piloto.h \
+ Carro.h
 
 TextUI.h:
 
-Carro.h:
+DVG.h:
 
 Piloto.h:
+
+Carro.h:

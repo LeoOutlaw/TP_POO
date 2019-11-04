@@ -24,6 +24,17 @@ class DVG{
     vector <Carro> carros;
 public:
     DVG();
+    vector <Carro> getCarros();
+    bool removeCarro(char id);
+    void addPiloto(Piloto piloto);
+    void addCarro(Carro carro);
+    void listarCarros();
+    void listarPilotos();
+    bool encontraPiloto(string nome);
+    bool encontraCarro(char id);
+    Carro buscaCarro( char id);
+    Piloto buscaPiloto (string nome);
+    ~DVG();
 };
 #endif /* DVG_H */
 

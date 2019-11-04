@@ -17,16 +17,14 @@
 
 #include "TextUI.h"
 #include "Carro.h"
+#include "DVG.h"
 
 using namespace std;
 
 int main(int argc, char** argv) {
-   // TextUI * textUi = new TextUI();
-   // textUi->start();
-    Carro carr("ferrari","data", 0, 200);
-    cout << carr.getID() << endl;
-    Carro ddd("ferrari");
-    cout << ddd.getID();
+    TextUI * textUi = new TextUI();
+    textUi->start();
+    delete [] textUi;
     return 0;
 }
 

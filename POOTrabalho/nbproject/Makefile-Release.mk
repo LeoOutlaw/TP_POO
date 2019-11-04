@@ -35,7 +35,9 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/Autodromo.o \
 	${OBJECTDIR}/Carro.o \
+	${OBJECTDIR}/DVG.o \
 	${OBJECTDIR}/Piloto.o \
 	${OBJECTDIR}/TextUI.o \
 	${OBJECTDIR}/main.o
@@ -65,10 +67,20 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/pootrabalho.exe: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/pootrabalho ${OBJECTFILES} ${LDLIBSOPTIONS}
 
+${OBJECTDIR}/Autodromo.o: Autodromo.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Autodromo.o Autodromo.cpp
+
 ${OBJECTDIR}/Carro.o: Carro.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Carro.o Carro.cpp
+
+${OBJECTDIR}/DVG.o: DVG.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/DVG.o DVG.cpp
 
 ${OBJECTDIR}/Piloto.o: Piloto.cpp
 	${MKDIR} -p ${OBJECTDIR}

@@ -17,10 +17,13 @@
 #include "DVG.h"
 
 class Autodromo{
+    string nome;
+    int pistas;
+    int comprimento;
     vector <Carro> corrida;
     vector <Carro> garagem;
-    DVG dvg;
-    
+public:
+    Autodromo(int pistas, int comprimento, string nome);
 };
 
 

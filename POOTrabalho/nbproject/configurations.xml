@@ -18,7 +18,9 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>Autodromo.cpp</itemPath>
       <itemPath>Carro.cpp</itemPath>
+      <itemPath>DVG.cpp</itemPath>
       <itemPath>Piloto.cpp</itemPath>
       <itemPath>TextUI.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
@@ -45,6 +47,8 @@
       </toolsSet>
       <compileType>
       </compileType>
+      <item path="Autodromo.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="Autodromo.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Carro.cpp" ex="false" tool="1" flavor2="0">
@@ -52,6 +56,8 @@
       <item path="Carro.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Crazy.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="DVG.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="DVG.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -86,6 +92,8 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="Autodromo.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="Autodromo.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Carro.cpp" ex="false" tool="1" flavor2="0">
@@ -93,6 +101,8 @@
       <item path="Carro.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Crazy.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="DVG.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="DVG.h" ex="false" tool="3" flavor2="0">
       </item>

@@ -22,11 +22,12 @@
 #include <string>
 #include <vector>
 #include <cctype>
+#include "DVG.h"
 
 using namespace std;
 
 class TextUI{
-    //vector<DVG> dvg;
+    DVG * dvg;
     int iter;
 public:
     TextUI();
@@ -36,6 +37,9 @@ public:
     bool leComandos(string comando);
     vector<string> separaComando(string comando, char separador);
     string toLower(string str);
+    bool comandoLoadPilotos(string ficheiro);
+    bool comandoLoadCarros(string ficheiro);
+    bool comandoRemoveCarro(string id);
 };
 
 #endif /* TEXTUI_H */

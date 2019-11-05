@@ -29,7 +29,7 @@ public:
     Piloto(string tipo ,string nome);
     string getNome() const;
     string getTipo() const;
-    Piloto & operator=(const Piloto & piloto);
+    Piloto(const Piloto & piloto);
     void mostrarPiloto();
     ~Piloto();
 };

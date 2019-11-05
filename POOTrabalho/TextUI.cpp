@@ -90,22 +90,31 @@ bool TextUI::leComandos(string comando) {
                 stringSeparada[2] += ' ';
                 stringSeparada[2] += stringSeparada[i + 1];
             }
-            if( dvg->encontraPiloto(stringSeparada[2])){
-                //dvg->buscaCarro(stringSeparada[1][0]).getPiloto() = dvg->buscaPiloto(stringSeparada[2]);
-            }else{
+            if (dvg->encontraPiloto(stringSeparada[2])) {
+                dvg->buscaCarro(stringSeparada[1][0])->setPiloto(dvg->buscaPiloto(stringSeparada[2]));
+                dvg->buscaCarro(stringSeparada[1][0])->getPiloto()->mostrarPiloto();
+            } else {
                 cout << "Piloto nao existe!\n";
             }
         } else {
             cout << "Carro nao existe!\n";
         }
     } else if (stringSeparada[0] == "saidocarro") {
-
+        if (dvg->encontraCarro(stringSeparada[1][0])) {
+            if (dvg->buscaCarro(stringSeparada[1][0])->getPiloto()!= NULL) {
+                dvg->buscaCarro(stringSeparada[1][0])->setPiloto(NULL);
+            } else {
+                cout << "Carro encontra ja se sem piloto!\n";
+            }
+        } else {
+            cout << "Carro nao existe!\n";
+        }
     } else if (stringSeparada[0] == "lista") {
         dvg->listarPilotos();
         cout << "---------------------------\n";
         dvg->listarCarros();
     } else if (stringSeparada[0] == "savedgv") {
-        
+
     } else if (stringSeparada[0] == "loaddvg") {
 
     } else if (stringSeparada[0] == "deldvg") {

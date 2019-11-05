@@ -63,20 +63,22 @@ bool DVG::encontraPiloto(string nome){
     return false;
 }
 
-Carro DVG::buscaCarro(char id){
+Carro *DVG::buscaCarro(char id){
     for ( int i= 0; i< carros.size(); i++){
         if (carros[i].getID() == id ){
-            return carros[i];
+            return &carros[i];
         }
     }
+    return NULL;
 }
 
-Piloto DVG::buscaPiloto(string nome){
+Piloto *DVG::buscaPiloto(string nome){
     for ( int i= 0; i< pilotos.size(); i++){
         if (pilotos[i].getNome() == nome ){
-            return pilotos[i];
+            return &pilotos[i];
         }
     }
+    return NULL;
 }
 
 DVG::~DVG(){

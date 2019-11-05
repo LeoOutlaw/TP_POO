@@ -13,6 +13,13 @@ Piloto::Piloto(string tipo, string nome){
     this->lembra_comecar = 0;
 }
 
+Piloto::Piloto(const Piloto& piloto){
+    nome = piloto.nome;
+    tipo = piloto.tipo;
+    carro = piloto.carro;
+    lembra_comecar = piloto.lembra_comecar;
+}
+
 string Piloto::getNome() const{
     return nome;
 }
@@ -25,12 +32,6 @@ string Piloto::getTipo() const{
     return tipo;
 }
 
-Piloto & Piloto::operator =(const Piloto & piloto){
-    this->nome = piloto.nome;
-    this->tipo = piloto.tipo;
-    this->carro = piloto.carro;
-    this->lembra_comecar = piloto.lembra_comecar;
-}
 
 Piloto::~Piloto(){
     

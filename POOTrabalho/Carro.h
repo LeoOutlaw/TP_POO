@@ -48,6 +48,7 @@ public:
     int getVelocidade();
     void setVelocidade(int velocidade);
     void mostrarCarro();
+    void setPiloto(Piloto *piloto);
     ~Carro();
 };
 

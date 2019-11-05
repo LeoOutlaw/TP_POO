@@ -32,8 +32,8 @@ public:
     void listarPilotos();
     bool encontraPiloto(string nome);
     bool encontraCarro(char id);
-    Carro buscaCarro( char id);
-    Piloto buscaPiloto (string nome);
+    Carro *buscaCarro( char id);
+    Piloto *buscaPiloto (string nome);
     ~DVG();
 };
 #endif /* DVG_H */

@@ -65,5 +65,9 @@ void Carro::mostrarCarro(){
     cout << "ID: " << this->id << " Marca:  " << this->marca << "  Modelo: " << this->modelo << endl;
 }
 
+void Carro::setPiloto(Piloto* piloto){
+    this->piloto = piloto;
+}
+
 Carro::~Carro(){
 }

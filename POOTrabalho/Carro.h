@@ -37,7 +37,7 @@ class Carro {
     bool sinal_emergencia;
     static char letra;
 public:
-    Carro(string marca, string modelo = "modelo base", int cap_min = 0, int cap_max = 100);
+    Carro(int cap_min, int cap_max, string marca, string modelo = "modelo base");
     string getMarca() const;
     string getModelo() const;
     char getID() const;

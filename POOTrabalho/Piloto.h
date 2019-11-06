@@ -25,10 +25,13 @@ class Piloto{
     string tipo;
     bool carro;                         //se esta a conduzir algum carro ou nao                 
     int lembra_comecar;
+    int pontos;
 public:
     Piloto(string tipo ,string nome);
     string getNome() const;
     string getTipo() const;
+    int getPontos();
+    void setPontos(int pontos);
     Piloto(const Piloto & piloto);
     void mostrarPiloto();
     ~Piloto();

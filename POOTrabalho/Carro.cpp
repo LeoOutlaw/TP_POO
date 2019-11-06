@@ -9,7 +9,7 @@
 char Carro::letra = 'a';
 
 
-Carro::Carro(string marca, string modelo, int cap_min , int cap_max ){
+Carro::Carro( int cap_min , int cap_max ,string marca, string modelo ){
     this->piloto = NULL;
     this->marca = marca;
     this->modelo = modelo;
@@ -63,6 +63,9 @@ void Carro::setVelocidade(int velocidade){
 
 void Carro::mostrarCarro(){
     cout << "ID: " << this->id << " Marca:  " << this->marca << "  Modelo: " << this->modelo << endl;
+    if(this->piloto != NULL){
+        cout << "0 piloto " << piloto->getNome() << " encontra se ao volante!\n";
+    }
 }
 
 void Carro::setPiloto(Piloto* piloto){

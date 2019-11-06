@@ -23,23 +23,31 @@
 #include <vector>
 #include <cctype>
 #include "DVG.h"
+#include "Campeonato.h"
 
 using namespace std;
 
-class TextUI{
+class TextUI {
     DVG * dvg;
+    Campeonato * camp;
     int iter;
 public:
     TextUI();
-    
+
     void start();
     void imprimeNome();
     bool leComandos(string comando);
     vector<string> separaComando(string comando, char separador);
-    string toLower(string str);
     bool comandoLoadPilotos(string ficheiro);
     bool comandoLoadCarros(string ficheiro);
+    bool comandoLoadAutodromos(string ficheiro);
     bool comandoRemoveCarro(string id);
+    bool comandoRemovePiloto(string nome);
+    bool comandoRemoveAutodromo(string nome);
+    int comandoEntraNoCarro(vector <string> comando);
+    string juntarNome(vector<string> nome, int num);
+    string toLower(string str);
+    ~TextUI();
 };
 
 #endif /* TEXTUI_H */

@@ -36,6 +36,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/Autodromo.o \
+	${OBJECTDIR}/Campeonato.o \
 	${OBJECTDIR}/Carro.o \
 	${OBJECTDIR}/DVG.o \
 	${OBJECTDIR}/Piloto.o \
@@ -71,6 +72,11 @@ ${OBJECTDIR}/Autodromo.o: Autodromo.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Autodromo.o Autodromo.cpp
+
+${OBJECTDIR}/Campeonato.o: Campeonato.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Campeonato.o Campeonato.cpp
 
 ${OBJECTDIR}/Carro.o: Carro.cpp
 	${MKDIR} -p ${OBJECTDIR}

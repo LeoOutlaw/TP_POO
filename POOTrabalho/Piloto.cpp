@@ -11,6 +11,7 @@ Piloto::Piloto(string tipo, string nome){
     this->tipo = tipo;
     carro = false;
     this->lembra_comecar = 0;
+    this->pontos = 0;
 }
 
 Piloto::Piloto(const Piloto& piloto){
@@ -32,6 +33,13 @@ string Piloto::getTipo() const{
     return tipo;
 }
 
+int Piloto::getPontos(){
+    return pontos;
+}
+
+void Piloto::setPontos(int pontos){
+    this->pontos = pontos;
+}
 
 Piloto::~Piloto(){
     

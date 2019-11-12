@@ -29,6 +29,10 @@ void Campeonato::mostraAutodromos() {
     }
 }
 
+vector <Autodromo> * Campeonato::getTodasAsPistas(){
+    return &todas_as_pistas;
+}
+
 void Campeonato::mostraClassificacaoFinal() {
     cout << " Informacao sobre a classificacao do campeonato\n";
     for (int i = 0; i < classificacao.size(); i++) {

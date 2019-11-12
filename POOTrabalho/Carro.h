@@ -30,6 +30,7 @@ class Carro {
     int cap_max;
     int num_carga;
     int velocidade;
+    int velocidade_max;  // velocidade maxima do carro
     bool estado;
     bool trava;
     bool acelera;
@@ -37,7 +38,7 @@ class Carro {
     bool sinal_emergencia;
     static char letra;
 public:
-    Carro(int cap_min, int cap_max, string marca, string modelo = "modelo base");
+    Carro(int velocidade, int cap_min, int cap_max, string marca, string modelo = "modelo base");
     string getMarca() const;
     string getModelo() const;
     char getID() const;

@@ -26,6 +26,11 @@ void TextUI::start() {
     do {
         getline(cin, comando);
     } while (leComandos(this->toLower(comando)));
+    system("clear");
+    cout << "------------Entrou no modo 2-----------------\n";
+    do {
+        getline(cin, comando);
+    } while (leComandosModo2(this->toLower(comando)));
 }
 
 void TextUI::imprimeNome() {
@@ -37,14 +42,29 @@ bool TextUI::leComandos(string comando) {
     string aux;
     stringSeparada = separaComando(comando, ' ');
     if (stringSeparada[0] == "fim") {
-        return false;
+        if (dvg->getVectorCarros()->size() != 0) {
+            if (dvg->getVectorPilotos()->size() != 0) {
+                if (camp->getTodasAsPistas()->size() != 0) {
+                    return false;
+                }
+            }
+        }
+        if (dvg->getVectorCarros()->size() == 0) {
+            cout << "Nao existe carros\n";
+        }
+        if (dvg->getVectorPilotos()->size() == 0) {
+            cout << "Nao existe pilotos\n";
+        }
+        if (camp->getTodasAsPistas()->size() == 0) {
+            cout << "Nao existem autodromos\n";
+        }
     } else if (stringSeparada[0] == "cria") {
         if (stringSeparada[1] == "c") {
             if (stringSeparada.size() == 5) {
-                dvg->addCarro(Carro(atoi(stringSeparada[2].c_str()), atoi(stringSeparada[3].c_str()), stringSeparada[4]));
-            }else if(stringSeparada.size() == 6){
-                dvg->addCarro(Carro(atoi(stringSeparada[2].c_str()), atoi(stringSeparada[3].c_str()), stringSeparada[4],  stringSeparada[5]));
-            }else {
+                dvg->addCarro(Carro(atoi(stringSeparada[2].c_str()), atoi(stringSeparada[3].c_str()), atoi(stringSeparada[4].c_str()), stringSeparada[4]));
+            } else if (stringSeparada.size() == 6) {
+                dvg->addCarro(Carro(atoi(stringSeparada[2].c_str()), atoi(stringSeparada[3].c_str()), atoi(stringSeparada[4].c_str()), stringSeparada[5], stringSeparada[6]));
+            } else {
                 cout << "Comando mal implementado -->EX: cria c <cap_min> <cap_max> <marca> <modelo>\n";
             }
         } else if (stringSeparada[1] == "p") {
@@ -55,9 +75,9 @@ bool TextUI::leComandos(string comando) {
                 cout << "Comando mal implementado -->EX: cria p tipo nome\n";
             }
         } else if (stringSeparada[1] == "a") {
-            if (stringSeparada.size() == 5){
+            if (stringSeparada.size() == 5) {
                 camp->addAutodromo(Autodromo(atoi(stringSeparada[2].c_str()), atoi(stringSeparada[3].c_str()), stringSeparada[4]));
-            }else {
+            } else {
                 cout << "Comando mal implementado -->EX: cria a <pistas> <comprimento> <nome>\n";
             }
         }
@@ -77,7 +97,7 @@ bool TextUI::leComandos(string comando) {
         } else {
             cout << "Numero de argumentos errado!\n";
         }
-    } else if (stringSeparada[0] == "carregaA") {
+    } else if (stringSeparada[0] == "carregaa") {
         if (stringSeparada.size() == 2) {
             if (!comandoLoadAutodromos(stringSeparada[1])) {
                 cout << "Ficheiro " << stringSeparada[1] << " nao encontrado!\n";
@@ -104,9 +124,9 @@ bool TextUI::leComandos(string comando) {
                 cout << "Piloto " << aux << " nao existe!\n";
             }
         } else if (stringSeparada[1] == "a") {
-            if( comandoRemoveAutodromo(stringSeparada[2])){
+            if (comandoRemoveAutodromo(stringSeparada[2])) {
                 cout << "Autodromo " << stringSeparada[2] << " eliminado!\n";
-            }else{
+            } else {
                 cout << "Autodromo " << stringSeparada[2] << " nao existe!\n";
             }
         } else {
@@ -149,8 +169,18 @@ bool TextUI::leComandos(string comando) {
 
     } else if (stringSeparada[0] == "deldvg") {
 
-    }else {
-        
+    }else{
+        cout << "Este comando nao existe!\n";
+    }
+}
+
+
+bool TextUI::leComandosModo2(string comando){
+    vector<string> stringSeparada;
+    string aux;
+    stringSeparada = separaComando(comando, ' ');
+    if (stringSeparada[0] == "fim"){
+        return false;
     }
 }
 
@@ -185,7 +215,7 @@ bool TextUI::comandoRemovePiloto(string nome) {
     return true;
 }
 
-bool TextUI::comandoRemoveAutodromo(string nome){
+bool TextUI::comandoRemoveAutodromo(string nome) {
     if (!camp->removeAutodromo(nome)) {
         return false;
     }
@@ -222,7 +252,7 @@ bool TextUI::comandoLoadCarros(string ficheiro) {
     while (!dados.eof()) {
         getline(dados, linha);
         stringSeparada = separaComando(linha, ' ');
-        dvg->addCarro(Carro(atoi(stringSeparada[0].c_str()), atoi(stringSeparada[1].c_str()), stringSeparada[2], stringSeparada[3]));
+        dvg->addCarro(Carro(atoi(stringSeparada[0].c_str()), atoi(stringSeparada[1].c_str()), atoi(stringSeparada[2].c_str()), stringSeparada[3], stringSeparada[4]));
     }
     dados.close();
     return true;

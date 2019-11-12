@@ -9,13 +9,14 @@
 char Carro::letra = 'a';
 
 
-Carro::Carro( int cap_min , int cap_max ,string marca, string modelo ){
+Carro::Carro(int velocidade_max, int cap_min , int cap_max ,string marca, string modelo ){
     this->piloto = NULL;
     this->marca = marca;
     this->modelo = modelo;
     this->cap_min = cap_min;
     this->cap_max = cap_max;
     this->velocidade = 0;
+    this->velocidade_max = velocidade_max;
     this->estado = false;
     this->acelera = false;
     this->trava = false;

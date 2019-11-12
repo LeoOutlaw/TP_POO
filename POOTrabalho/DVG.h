@@ -24,7 +24,6 @@ class DVG{
     vector <Carro> carros;
 public:
     DVG();
-    vector <Carro> getCarros();
     bool removeCarro(char id);
     bool removePiloto(string nome);
     void addPiloto(Piloto piloto);

@@ -37,6 +37,7 @@ public:
     void start();
     void imprimeNome();
     bool leComandos(string comando);
+    bool leComandosModo2(string comando);
     vector<string> separaComando(string comando, char separador);
     bool comandoLoadPilotos(string ficheiro);
     bool comandoLoadCarros(string ficheiro);

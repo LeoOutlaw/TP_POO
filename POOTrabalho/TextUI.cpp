@@ -36,6 +36,11 @@ bool TextUI::leComandos(string comando) {
     vector<string> stringSeparada;
     string aux;
     stringSeparada = separaComando(comando, ' ');
+    
+    
+    //Definir comandos MODO1
+    
+    //Definir comandos MODO2
     if (stringSeparada[0] == "fim") {
         return false;
     } else if (stringSeparada[0] == "cria") {
@@ -66,7 +71,7 @@ bool TextUI::leComandos(string comando) {
             if (!comandoLoadPilotos(stringSeparada[1])) {
                 cout << "Ficheiro " << stringSeparada[1] << " nao encontrado!\n";
             }
-        } else {
+            } else {
             cout << "Numero de argumentos errado!\n";
         }
     } else if (stringSeparada[0] == "carregac") {
@@ -77,7 +82,7 @@ bool TextUI::leComandos(string comando) {
         } else {
             cout << "Numero de argumentos errado!\n";
         }
-    } else if (stringSeparada[0] == "carregaA") {
+    } else if (stringSeparada[0] == "carregaa") {
         if (stringSeparada.size() == 2) {
             if (!comandoLoadAutodromos(stringSeparada[1])) {
                 cout << "Ficheiro " << stringSeparada[1] << " nao encontrado!\n";
@@ -143,6 +148,8 @@ bool TextUI::leComandos(string comando) {
         dvg->listarPilotos();
         cout << "---------------------------\n";
         dvg->listarCarros();
+        camp->mostraAutodromos();
+        
     } else if (stringSeparada[0] == "savedgv") {
 
     } else if (stringSeparada[0] == "loaddvg") {
@@ -238,7 +245,9 @@ bool TextUI::comandoLoadAutodromos(string ficheiro) {
     while (!dados.eof()) {
         getline(dados, linha);
         stringSeparada = separaComando(linha, ' ');
+        cout << stringSeparada[0] << " " << stringSeparada[1] << " " << stringSeparada[2] << endl;
         camp->addAutodromo(Autodromo(atoi(stringSeparada[0].c_str()), atoi(stringSeparada[1].c_str()), stringSeparada[2]));
+        
     }
     dados.close();
     return true;

@@ -22,9 +22,11 @@
 using namespace std;
 
 int main(int argc, char** argv) {
+    
     TextUI * textUi = new TextUI();
     textUi->start();
     delete [] textUi;
+    
     return 0;
 }
 

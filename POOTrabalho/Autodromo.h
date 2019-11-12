@@ -31,6 +31,7 @@ public:
     int getComprimento() const;
     string getNome() const;
     void mostraClassificacaoCorrida();
+    void mostraAutodromo();
     ~Autodromo();
 };
 

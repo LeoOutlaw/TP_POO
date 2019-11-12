@@ -11,9 +11,6 @@
 DVG::DVG() {
 }
 
-vector <Carro> DVG::getCarros() {
-    return carros;
-}
 
 bool DVG::removeCarro(char id) {
     for (int i = 0; i < carros.size(); i++) {

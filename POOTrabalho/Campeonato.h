@@ -27,6 +27,7 @@ public:
     bool removeAutodromo(string nome);
     void mostraClassificacaoFinal();
     void mostraAutodromos();
+    vector <Autodromo> * getTodasAsPistas();
 };
 
 #endif /* CAMPEONATO_H */

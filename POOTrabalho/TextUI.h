@@ -46,6 +46,8 @@ public:
     bool comandoRemovePiloto(string nome);
     bool comandoRemoveAutodromo(string nome);
     int comandoEntraNoCarro(vector <string> comando);
+    bool comandoCampeonato(vector<string> comando);
+    void comandoPassaTempo(int passa);
     string juntarNome(vector<string> nome, int num);
     string toLower(string str);
     ~TextUI();

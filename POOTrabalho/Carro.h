@@ -26,12 +26,12 @@ class Carro {
     string marca;
     string modelo;
     char id;
-    int pos;
     int cap_min;
     int cap_max;
     int num_carga;
     int velocidade;
     int velocidade_max;  // velocidade maxima do carro
+    bool estado;
     bool trava;
     bool acelera;
     //int trata_carro;  // Saber o que o piloto esta a fazer, se esta a acelarar travar ou nem um nem outro
@@ -42,16 +42,14 @@ public:
     string getMarca() const;
     string getModelo() const;
     char getID() const;
+    bool getEstado();
     bool getAcelera();
     bool getTrava();
-    int getPosicao();
-    void setPosicao(int pos);
     Piloto * getPiloto();
     int getVelocidade();
     void setVelocidade(int velocidade);
     void mostrarCarro();
     void setPiloto(Piloto *piloto);
-    Carro & operator =(Carro *c);
     ~Carro();
 };
 

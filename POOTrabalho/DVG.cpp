@@ -97,8 +97,8 @@ Piloto *DVG::buscaPiloto(string nome) {
     return NULL;
 }
 
-vector <Carro> DVG::getVectorCarros() {
-    return carros;
+vector <Carro> * DVG::getVectorCarros() {
+    return &carros;
 }
 
 vector <Piloto> * DVG::getVectorPilotos(){

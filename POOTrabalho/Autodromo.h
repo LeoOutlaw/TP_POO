@@ -20,18 +20,25 @@ class Autodromo{
     string nome;
     int pistas;
     int comprimento;
-    vector <Carro> classificacao;
-    vector <Carro> corrida;
-    vector <Carro> garagem;
+    vector <Carro*> classificacao;
+    vector <Carro*> corrida;
+    vector <Carro*> garagem;
 public:
     Autodromo(int pistas, int comprimento, string nome);
-    void addCarroCorrida(Carro carro);
-    void addCarroGaragem(Carro carro);
+    void addCarroCorrida(Carro *carro);
+    void addCarroGaragem(Carro *carro);
+    void addCarroClassificacao( Carro *carro);
+    vector <Carro*> getClassificacao();
+    vector <Carro*> getCorrida();
+    vector <Carro*> getGaragem();
     int getPistas() const;
     int getComprimento() const;
     string getNome() const;
     void mostraClassificacaoCorrida();
     void mostraAutodromo();
+    void carrosParaCorrida();
+    void passaUmSegundo();
+
     ~Autodromo();
 };
 

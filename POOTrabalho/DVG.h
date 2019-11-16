@@ -35,7 +35,7 @@ public:
     bool encontraCarro(char id);
     Carro *buscaCarro( char id);
     Piloto *buscaPiloto (string nome);
-    vector <Carro> * getVectorCarros();
+    vector <Carro> getVectorCarros();
     vector <Piloto> * getVectorPilotos();
     ~DVG();
 };

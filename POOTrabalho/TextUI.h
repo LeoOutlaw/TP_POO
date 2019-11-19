@@ -24,6 +24,7 @@
 #include <cctype>
 #include "DVG.h"
 #include "Campeonato.h"
+#include "Consola.h"
 
 using namespace std;
 
@@ -49,7 +50,11 @@ public:
     bool comandoCampeonato(vector<string> comando);
     void comandoPassaTempo(int passa);
     string juntarNome(vector<string> nome, int num);
+    bool iniciaModo2();
+    void mostra_janela_passatempo(int num);
+    void mostra_janela_inicial();
     string toLower(string str);
+    string toUpper(string str);
     ~TextUI();
 };
 

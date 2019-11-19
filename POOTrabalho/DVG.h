@@ -36,7 +36,7 @@ public:
     Carro *buscaCarro( char id);
     Piloto *buscaPiloto (string nome);
     vector <Carro> getVectorCarros();
-    vector <Piloto> * getVectorPilotos();
+    vector <Piloto> getVectorPilotos();
     ~DVG();
 };
 #endif /* DVG_H */

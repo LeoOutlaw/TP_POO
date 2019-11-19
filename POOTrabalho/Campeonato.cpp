@@ -79,3 +79,4 @@ void Campeonato::mostraClassificacaoFinal() {
         cout << i+1 <<"º---- " << classificacao[i].getNome() << endl;
     }
 }
+

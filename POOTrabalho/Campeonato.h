@@ -37,6 +37,7 @@ public:
     vector <Autodromo> getTodasAsPistas();
     Autodromo *getPista(string nome);   // Todas as pistas
     void addConcorrentesAoAutodromo();
+    
 };
 
 #endif /* CAMPEONATO_H */

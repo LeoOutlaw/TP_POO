@@ -13,6 +13,7 @@ Carro::Carro(int velocidade_max, int cap_min , int cap_max ,string marca, string
     this->marca = marca;
     this->modelo = modelo;
     this->pos = 0;
+    this->pos_x=0;
     this->cap_min = cap_min;
     this->cap_max = cap_max;
     this->velocidade = 0;
@@ -61,8 +62,12 @@ int Carro::getPosicao(){
     return pos;
 }
 
+int Carro::getPosicao_x(){
+    return pos_x;
+}
+
 void Carro::setPosicao(int pos){
-    this->pos = pos;
+    this->pos_x += pos;
 }
 
 void Carro::mostrarCarro(){

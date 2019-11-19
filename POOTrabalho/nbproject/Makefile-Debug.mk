@@ -38,6 +38,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Autodromo.o \
 	${OBJECTDIR}/Campeonato.o \
 	${OBJECTDIR}/Carro.o \
+	${OBJECTDIR}/Consola.o \
 	${OBJECTDIR}/DVG.o \
 	${OBJECTDIR}/Piloto.o \
 	${OBJECTDIR}/TextUI.o \
@@ -82,6 +83,11 @@ ${OBJECTDIR}/Carro.o: Carro.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Carro.o Carro.cpp
+
+${OBJECTDIR}/Consola.o: Consola.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Consola.o Consola.cpp
 
 ${OBJECTDIR}/DVG.o: DVG.cpp
 	${MKDIR} -p ${OBJECTDIR}

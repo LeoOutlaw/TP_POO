@@ -34,6 +34,7 @@ public:
     void setPontos(int pontos);
     Piloto(const Piloto & piloto);
     void mostrarPiloto();
+
     ~Piloto();
 };
 

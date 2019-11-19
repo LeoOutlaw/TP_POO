@@ -27,15 +27,131 @@ void TextUI::start() {
     comandoLoadPilotos("p.txt");
     comandoLoadAutodromos("a.txt");
     do {
+        cout << "Consola Modo1> ";
         getline(cin, comando);
     } while (leComandos(this->toLower(comando)));
-    system("clear");
-    cout << "------------Entrou no modo 2-----------------\n";
-    camp->addConcorrentesAoAutodromo();
-    camp->getAutodromoCampeonato()[camp->getActualAutodromo()]->carrosParaCorrida();
+   
+    iniciaModo2();
+    
+    //preparamodo2
+    
+    
     do {
+        cout << "Consola Modo2> ";
         getline(cin, comando);
     } while (leComandosModo2(this->toLower(comando)));
+}
+
+bool TextUI::iniciaModo2(){
+    
+    //cout << "------------Entrou no modo 2-----------------\n";
+    
+    camp->addConcorrentesAoAutodromo();
+    camp->getAutodromoCampeonato()[camp->getActualAutodromo()]->carrosParaCorrida();
+    
+    mostra_janela_inicial();
+    //Mostra Janela inicial - mostra competidores e resp carros
+    
+    //Mostra Janela Corrida - mostra interface atualizada com pista e classificação
+    return true;
+}
+void TextUI::mostra_janela_passatempo(int num)
+{   
+    Consola::gotoxy(0,1);
+    Consola::clrscr();
+    cout << "A corrida do " << camp->getAutodromoCampeonato()[camp->getActualAutodromo()]->getNome() << ": "<<  endl;
+    
+    int n_carros_2 = camp->getConcorrentes().size();
+    
+    Consola::gotoxy(0,1);    
+    
+    for(int h=0;h<n_carros_2;h++){
+        Consola::setBackgroundColor(Consola::CINZENTO+h);
+        for(int k=0;k<100;k++){
+            cout << " " ;
+        }
+        Consola::setBackgroundColor(Consola::PRETO);
+        cout << " FINAL\n" ;
+    }
+   
+    //O BACKGORUND COLOR TEM DE SER ESCRITO ANTES DO AVANÇO DOS CARROS
+        //FAZER GOTOXY(0,1)
+    Consola::gotoxy(0,1);
+    //Consola::getch();
+    //cout << camp->getConcorrentes()[0]->getPosicao_x();
+    //cout << camp->getConcorrentes()[1]->getPosicao_x();
+    
+    for(int i=0;i<n_carros_2 ;i++)
+    {   
+        //camp->getConcorrentes()[i]->setPosicao(num);
+        //Consola::gotoxy(camp->getConcorrentes()[i]->getPosicao_x(), i+1);
+        Consola::gotoxy(camp->getConcorrentes()[i]->getPosicao_x(), i+1);
+        cout << camp->getConcorrentes()[i]->getID();
+        //Consola::setBackgroundColor(Consola::CINZENTO+i);
+        /*
+        for(int j=0;j<100;j++)
+        {
+            cout << " ";
+        }*/
+        //Consola::getch();
+        Consola::setBackgroundColor(Consola::PRETO);
+        //cout << " FINAL\n" ;
+        //cout << camp->getConcorrentes()[i]->getPosicao_x();
+        
+    }
+    //cout << camp->getConcorrentes()[0]->getPosicao_x();
+    //cout << camp->getConcorrentes()[1]->getPosicao_x();
+    Consola::gotoxy(0,n_carros_2+1);
+    //Consola::getch();
+    
+    //FALTA NA PARTE FINAL ESCREVER A CLASSIFICAÇÃO
+    
+}
+
+void TextUI::mostra_janela_inicial(){
+        
+    cout << "----------------------------------------- Simulador de Corridas -----------------------------------------" << endl;
+    //camp->mostraAutodromos()[0];
+    //int n_carros = camp->getTodasAsPistas().size();
+    int n_carros_2 = camp->getConcorrentes().size();
+    //    cout << "N_Carros: " << n_carros <<endl;
+    
+    Consola::gotoxy(0,1);
+   
+    //cout << camp->getConcorrentes()[0]->getID() ;
+    
+    Consola::setScreenSize(15,120);
+    //Consola::setBackgroundColor(Consola::CINZENTO);
+    
+    for(int i=0;i<n_carros_2 ;i++)
+    {   
+        cout << camp->getConcorrentes()[i]->getID();
+        Consola::setBackgroundColor(Consola::CINZENTO+i);
+        
+        for(int j=0;j<100;j++)
+        {
+            cout << " ";
+        }
+        Consola::setBackgroundColor(Consola::PRETO);
+        cout << " FINAL\n" ;
+    }
+    
+    cout << "\n\t Pilotos Concorrentes: " << endl;
+    
+    for(int i=0;i<camp->getConcorrentes().size();i++)
+        cout << "Nome: " << camp->getConcorrentes()[i]->getPiloto()->getNome() << " Marca: " << camp->getConcorrentes()[i]->getMarca() << " Modelo :" << camp->getConcorrentes()[i]->getModelo() << endl;
+    
+        Consola::setBackgroundColor(Consola::PRETO);
+        Consola::getch();
+        Consola::clrscr();
+        
+    //FÇ MOSTRA CLASSIFICAÇÃO
+   /* cout << "-------Classificacao Atual-----------------" << endl;
+    cout << "1o: " << "Andre \n" << endl;
+    cout << "2o: " << "Leo \n" << endl;
+    cout << "3o: " << "Joao \n" << endl;
+    Consola::getch();
+    */
 }
 
 void TextUI::imprimeNome() {
@@ -47,16 +163,13 @@ bool TextUI::leComandos(string comando) {
     string aux;
     stringSeparada = separaComando(comando, ' ');
     
-    
-    //Definir comandos MODO1
-    
-    //Definir comandos MODO2
     if (stringSeparada[0] == "fim") {
-        if (dvg->getVectorCarros()->size() != 0) {
-            if (dvg->getVectorPilotos()->size() != 0) {
-                if (camp->getTodasAsPistas()->size() != 0) {
-                    return false;
+        if (dvg->getVectorCarros().size() != 0) {
+            if (dvg->getVectorPilotos().size() != 0) {
+                if (camp->getTodasAsPistas().size() != 0) {
+                    return false;}}}}
     if (stringSeparada[0] == "campeonato") {
+        Consola::clrscr();
         if (stringSeparada.size() > 1) {
             int flag = 0;
             for (int i = 1; i < stringSeparada.size(); i++) {
@@ -73,7 +186,7 @@ bool TextUI::leComandos(string comando) {
                 }
             }
             if (dvg->getVectorCarros().size() != 0) {
-                if (dvg->getVectorPilotos()->size() != 0) {
+                if (dvg->getVectorPilotos().size() != 0) {
                     if (camp->getTodasAsPistas().size() != 0) {
                         return comandoCampeonato(stringSeparada);
                     }
@@ -82,7 +195,7 @@ bool TextUI::leComandos(string comando) {
             if (dvg->getVectorCarros().size() == 0) {
                 cout << "Nao existe carros\n";
             }
-            if (dvg->getVectorPilotos()->size() == 0) {
+            if (dvg->getVectorPilotos().size() == 0) {
                 cout << "Nao existe pilotos\n";
             }
             if (camp->getTodasAsPistas().size() == 0) {
@@ -196,6 +309,7 @@ bool TextUI::leComandos(string comando) {
         dvg->listarPilotos();
         cout << "---------------------------\n";
         dvg->listarCarros();
+        cout << "---------------------------\n";
         camp->mostraAutodromos();
         
     } else if (stringSeparada[0] == "savedgv") {
@@ -216,7 +330,11 @@ bool TextUI::leComandosModo2(string comando) {
         return false;
     } else if (stringSeparada[0] == "passatempo") {
         if ( stringSeparada.size() == 2){
+            //ESTE COMANDO AUMENTA A POSICAO CONSOANTE A VELOCIDADE/TRAVAGEM
+                //para esta 1a meta foi deixado em comentario
+            
             comandoPassaTempo(atoi(stringSeparada[1].c_str()));
+            mostra_janela_passatempo(atoi(stringSeparada[1].c_str()));
         }else {
             cout << "Comando mal escrito! passatempo <int>\n";
         }
@@ -373,6 +491,11 @@ string TextUI::juntarNome(vector<string> nome, int num) {
 
 string TextUI::toLower(string str) {
     transform(str.begin(), str.end(), str.begin(), ::tolower);
+    return str;
+}
+
+string TextUI::toUpper(string str){
+    transform(str.begin(), str.end(), str.begin(), ::toupper);
     return str;
 }
 

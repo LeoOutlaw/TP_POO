@@ -27,6 +27,7 @@ class Carro {
     string modelo;
     char id;
     int pos;
+    int pos_x;
     int cap_min;
     int cap_max;
     int num_carga;
@@ -45,6 +46,7 @@ public:
     bool getAcelera();
     bool getTrava();
     int getPosicao();
+    int getPosicao_x();
     void setPosicao(int pos);
     Piloto * getPiloto();
     int getVelocidade();

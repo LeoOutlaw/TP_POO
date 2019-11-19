@@ -101,8 +101,8 @@ vector <Carro> DVG::getVectorCarros() {
     return carros;
 }
 
-vector <Piloto> * DVG::getVectorPilotos(){
-    return &pilotos;
+vector <Piloto> DVG::getVectorPilotos(){
+    return pilotos;
 }
 
 DVG::~DVG() {

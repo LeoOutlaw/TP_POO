@@ -39,6 +39,7 @@ int Autodromo::getPistas() const {
 
 void Autodromo::mostraAutodromo() {
     cout << "Nome: " << this->nome << " Comprimento: " << this->comprimento << " Pistas: " << this->pistas << endl;
+}
 
 vector <Carro*> Autodromo::getGaragem() {
     return garagem;
@@ -80,11 +81,14 @@ void Autodromo::passaUmSegundo() {
     Carro * carro;
     for (int i = 0; i < corrida.size(); i++) {
         if (corrida[i]->getAcelera()) {
-            corrida[i]->setVelocidade(corrida[i]->getVelocidade() + 1);
+            //APENAS PARA A 1A META
+            corrida[i]->setVelocidade(1);
+            
+            //corrida[i]->setVelocidade(corrida[i]->getVelocidade() + 1);
             corrida[i]->setPosicao(corrida[i]->getPosicao() + corrida[i]->getVelocidade());
         } else if (corrida[i]->getTrava()) {
-            corrida[i]->setVelocidade(corrida[i]->getVelocidade() - 1);
-            corrida[i]->setPosicao(corrida[i]->getPosicao() + corrida[i]->getVelocidade());
+            //corrida[i]->setVelocidade(corrida[i]->getVelocidade() - 1);
+            //corrida[i]->setPosicao(corrida[i]->getPosicao() + corrida[i]->getVelocidade());
         }
     }
     //fazer ciclo para ver quem esta com a posicao maior e trocar classificacao
@@ -97,8 +101,6 @@ void Autodromo::passaUmSegundo() {
             i=-1;
         }
     }
-
-
 }
 
 Autodromo::~Autodromo() {

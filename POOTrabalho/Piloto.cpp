@@ -41,6 +41,7 @@ void Piloto::setPontos(int pontos){
     this->pontos = pontos;
 }
 
+
 Piloto::~Piloto(){
     
 }

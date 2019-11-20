@@ -36,7 +36,6 @@ int Autodromo::getPistas() const {
     return pistas;
 }
 
-
 void Autodromo::mostraAutodromo() {
     cout << "Nome: " << this->nome << " Comprimento: " << this->comprimento << " Pistas: " << this->pistas << endl;
 }

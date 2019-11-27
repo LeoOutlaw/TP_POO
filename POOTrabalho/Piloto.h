@@ -21,7 +21,7 @@
 using namespace std;
 
 class Piloto{
-    string  nome;
+    string nome;
     string tipo;
     bool carro;                         //se esta a conduzir algum carro ou nao                 
     int lembra_comecar;
@@ -32,6 +32,8 @@ public:
     string getTipo() const;
     int getPontos();
     void setPontos(int pontos);
+    bool getCarro();
+    void setCarro(bool val);
     Piloto(const Piloto & piloto);
     void mostrarPiloto();
 

@@ -27,7 +27,8 @@ vector <Carro*> Campeonato::getConcorrentes(){
     return concorrentes;
 }
 
-void Campeonato::addAutodromo(Autodromo autodromo){
+void Campeonato::addAutodromo(int pistas, int comp, string nome){
+    Autodromo autodromo(pistas, comp, nome);
     todas_as_pistas.push_back(autodromo);
 }
 
@@ -37,7 +38,7 @@ void Campeonato::addAutodromoParaCampeonato( Autodromo *autodromo){
 
 bool Campeonato::removeAutodromo(string nome){
     for (int i = 0; i < todas_as_pistas.size(); i++) {
-        if (todas_as_pistas[i].getNome() == nome) {
+        if (todas_as_pistas[i].getNome().compare(nome)) {
             todas_as_pistas.erase(todas_as_pistas.begin() + i);
             return true;
         }
@@ -56,7 +57,7 @@ vector <Autodromo> Campeonato::getTodasAsPistas(){
 
 Autodromo *Campeonato::getPista(string nome) {
     for (int i = 0; i < todas_as_pistas.size(); i++) {
-        if (todas_as_pistas[i].getNome() == nome) {
+        if (todas_as_pistas[i].getNome().compare(nome)) {
             return &todas_as_pistas[i];
         }
     }

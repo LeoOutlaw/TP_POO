@@ -35,7 +35,7 @@ class TextUI {
 public:
     TextUI();
 
-    void start();
+    bool start();
     void imprimeNome();
     bool leComandos(string comando);
     bool leComandosModo2(string comando);
@@ -51,10 +51,12 @@ public:
     void comandoPassaTempo(int passa);
     string juntarNome(vector<string> nome, int num);
     bool iniciaModo2();
-    void mostra_janela_passatempo(int num);
+    bool mostra_janela_passatempo(int num);
     void mostra_janela_inicial();
     string toLower(string str);
     string toUpper(string str);
+    void imprimeLog(string msg);
+    void imprimeErro(string msg);
     ~TextUI();
 };
 

@@ -11,10 +11,14 @@
 DVG::DVG() {
 }
 
+char DVG::letra = '1';
 
 bool DVG::removeCarro(char id) {
     for (int i = 0; i < carros.size(); i++) {
         if (carros[i].getID() == id) {
+            if (carros.at(i).getOcupado()){
+                carros.at(i).getPiloto()->setCarro(false);
+            }
             carros.erase(carros.begin() + i);
             return true;
         }
@@ -24,7 +28,7 @@ bool DVG::removeCarro(char id) {
 
 bool DVG::removePiloto(string nome) {
     for (int i = 0; i < pilotos.size(); i++) {
-        if (pilotos[i].getNome() == nome) {
+        if (pilotos.at(i).getNome().compare(nome) == 0 || pilotos.at(i).getNome().compare(nome) == 1) {
             pilotos.erase(pilotos.begin() + i);
             return true;
         }
@@ -32,7 +36,15 @@ bool DVG::removePiloto(string nome) {
     return false;
 }
 
-void DVG::addPiloto(Piloto piloto) {
+void DVG::addPiloto(string tipo, string nome) {
+    for (int i = 0; i < pilotos.size(); i++) {
+        if (pilotos.at(i).getNome().compare(nome) == 0 || pilotos.at(i).getNome().compare(nome) == 1) {
+            nome += letra;
+            letra++;
+            break;
+        }
+    }
+    Piloto piloto(tipo, nome);
     pilotos.push_back(piloto);
 }
 
@@ -52,10 +64,12 @@ void DVG::listarPilotos() {
     }
 }
 
-Carro * DVG::verSePilotoEstaAoVolante(string nome){
-    for (int i = 0; i< carros.size() ; i++){
-        if(carros[i].getPiloto()->getNome() == nome){
-            return &carros[i];
+Carro * DVG::verSePilotoEstaAoVolante(string nome) {
+    for (int i = 0; i < carros.size(); i++) {
+        if (carros.at(i).getPiloto() != NULL) {
+            if (carros.at(i).getPiloto()->getNome().compare(nome)) {
+                return &carros.at(i);
+            }
         }
     }
     return NULL;
@@ -72,7 +86,7 @@ bool DVG::encontraCarro(char id) {
 
 bool DVG::encontraPiloto(string nome) {
     for (int i = 0; i < pilotos.size(); i++) {
-        if (pilotos[i].getNome() == nome) {
+        if (pilotos.at(i).getNome().compare(nome) == 0 || pilotos.at(i).getNome().compare(nome) == 1) {
             return true;
         }
     }
@@ -90,8 +104,8 @@ Carro *DVG::buscaCarro(char id) {
 
 Piloto *DVG::buscaPiloto(string nome) {
     for (int i = 0; i < pilotos.size(); i++) {
-        if (pilotos[i].getNome() == nome) {
-            return &pilotos[i];
+        if (pilotos.at(i).getNome().compare(nome) == 0 || pilotos.at(i).getNome().compare(nome) == 1) {
+            return &pilotos.at(i);
         }
     }
     return NULL;
@@ -101,7 +115,7 @@ vector <Carro> DVG::getVectorCarros() {
     return carros;
 }
 
-vector <Piloto> DVG::getVectorPilotos(){
+vector <Piloto> DVG::getVectorPilotos() {
     return pilotos;
 }
 

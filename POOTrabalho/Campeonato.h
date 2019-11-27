@@ -29,7 +29,7 @@ public:
     vector <Autodromo*> getAutodromoCampeonato();
     vector <Carro*> getConcorrentes();
     void addAutodromoParaCampeonato( Autodromo *autodromo);
-    void addAutodromo(Autodromo autodromo);
+    void addAutodromo(int pistas, int comp, string nome);
     void addConcorrentes(Carro *carro);
     bool removeAutodromo(string nome);
     void mostraClassificacaoFinal();

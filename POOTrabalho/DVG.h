@@ -22,11 +22,12 @@
 class DVG{
     vector <Piloto> pilotos;
     vector <Carro> carros;
+    static char letra;
 public:
     DVG();
     bool removeCarro(char id);
     bool removePiloto(string nome);
-    void addPiloto(Piloto piloto);
+    void addPiloto(string tipo, string nome);
     void addCarro(Carro carro);
     void listarCarros();
     void listarPilotos();

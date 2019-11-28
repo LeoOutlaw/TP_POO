@@ -179,7 +179,7 @@ bool TextUI::leComandos(string comando) {
     vector<string> stringSeparada;
     string aux;
     stringSeparada = separaComando(comando, ' ');
-
+    if(stringSeparada.size() !=0){
     if (stringSeparada[0] == "fim") {
         return false;
     }
@@ -379,6 +379,8 @@ bool TextUI::leComandos(string comando) {
         imprimeErro("Este comando nao existe!\n");
         //cout << "Este comando nao existe!\n";
     }
+    }else
+        imprimeErro("Comando nao recebeu parametros\n");
 }
 
 bool TextUI::leComandosModo2(string comando) {

@@ -136,7 +136,7 @@ void TextUI::mostra_janela_inicial() {
     //    cout << "N_Carros: " << n_carros <<endl;
 
     Consola::gotoxy(0, 1);
-
+    Consola::clrscr();
     //cout << camp->getConcorrentes()[0]->getID() ;
 
     Consola::setScreenSize(15, 120);
@@ -232,14 +232,16 @@ bool TextUI::leComandos(string comando) {
                 imprimeErro("Comando mal implementado -->EX: cria c <cap_min> <cap_max> <marca> <modelo>\n");
             }
         } else if (stringSeparada[1] == "p") {
-            if (stringSeparada[2] == "crazy" || stringSeparada[2] == "surpresa" || stringSeparada[2] == "rapido") {
-                aux = juntarNome(stringSeparada, 3);
-                dvg->addPiloto(stringSeparada[2], aux);
-                imprimeLog("Piloto criado com sucesso!\n");
-            } else {
-                imprimeErro("Comando mal implementado -->EX: cria p tipo nome\n");
-            }
-        } else if (stringSeparada[1] == "a") {
+            if(stringSeparada.size()== 4){
+                if (stringSeparada[2] == "crazy" || stringSeparada[2] == "surpresa" || stringSeparada[2] == "rapido") {
+                    aux = juntarNome(stringSeparada, 3);
+                    dvg->addPiloto(stringSeparada[2], aux);
+                    imprimeLog("Piloto criado com sucesso!\n");
+                } else
+                    imprimeErro("Comando mal implementado -->EX: cria p tipo nome1\n");
+            } else
+                imprimeErro("Comando mal implementado -->EX: cria p tipo nome2\n");
+            } else if (stringSeparada[1] == "a") {
             if (stringSeparada.size() == 5) {
                 camp->addAutodromo(atoi(stringSeparada[2].c_str()), atoi(stringSeparada[3].c_str()), stringSeparada[4]);
                 imprimeLog("Autodromo criado com sucesso!\n");
@@ -281,6 +283,7 @@ bool TextUI::leComandos(string comando) {
             imprimeErro("Numero de argumentos errado!\n");
         }
     } else if (stringSeparada[0] == "apaga") {
+        if(stringSeparada.size() == 3){
         if (stringSeparada[1] == "c") {
             if (stringSeparada[2].size() == 1) {
                 if (comandoRemoveCarro(stringSeparada[2])) {
@@ -289,10 +292,11 @@ bool TextUI::leComandos(string comando) {
                 } else {
                     imprimeErro("Carro nao existe!\n");
                 }
-            } else {
+            } else 
                 imprimeErro("Id demasiado grande!\n");
-            }
-        } else if (stringSeparada[1] == "p") {
+            
+        }
+         else if (stringSeparada[1] == "p") {
             aux = juntarNome(stringSeparada, 2);
             if (comandoRemovePiloto(aux)) {
                 imprimeLog(" ");
@@ -309,9 +313,12 @@ bool TextUI::leComandos(string comando) {
                 imprimeErro(" ");
                 cout << "Autodromo " << stringSeparada[2] << " nao existe!\n";
             }
-        } else {
+        } else 
             imprimeErro("Comando mal escrito!\n");
-        }
+    
+        } else 
+            imprimeErro("Numero de argumentos invalido -> apaga <letratipo> identificador");
+    
     } else if (stringSeparada[0] == "entranocarro") {
         if (stringSeparada.size() > 2) {
             int aux;
@@ -338,6 +345,7 @@ bool TextUI::leComandos(string comando) {
 
         }
     } else if (stringSeparada[0] == "saidocarro") {
+        if(stringSeparada.size() == 2){
         if (dvg->encontraCarro(stringSeparada[1][0])) {
             if (dvg->buscaCarro(stringSeparada[1][0])->getPiloto() != NULL) {
                 dvg->buscaCarro(stringSeparada[1][0])->getPiloto()->setCarro(false);
@@ -352,7 +360,9 @@ bool TextUI::leComandos(string comando) {
             imprimeErro("Carro nao existe!\n");
             //cout << "Carro nao existe!\n";
         }
-    } else if (stringSeparada[0] == "lista") {
+        }else 
+            imprimeErro("Numero de argumentos inválido -> saidocarro <letraCarro>");
+    }else if (stringSeparada[0] == "lista") {
         dvg->listarPilotos();
         cout << "---------------------------\n";
         dvg->listarCarros();

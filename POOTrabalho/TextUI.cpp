@@ -18,7 +18,7 @@ TextUI::TextUI() {
     camp = new Campeonato();
 }
 
-void TextUI::start() {
+bool TextUI::start() {
     //    dvg.push_back(new DVG());
     iter = 0;
     string comando;
@@ -34,64 +34,69 @@ void TextUI::start() {
         cout << "Consola Modo1> ";
         getline(cin, comando);
     } while (leComandos(this->toLower(comando)));
-   
+    if (comando == "fim") {
+        return false;
+    }
     iniciaModo2();
-    
+
     //preparamodo2
-    
-    
+
+
     do {
         cout << "Consola Modo2> ";
         getline(cin, comando);
     } while (leComandosModo2(this->toLower(comando)));
 }
 
-bool TextUI::iniciaModo2(){
-    
+bool TextUI::iniciaModo2() {
+
     //cout << "------------Entrou no modo 2-----------------\n";
-    
+
     camp->addConcorrentesAoAutodromo();
     camp->getAutodromoCampeonato()[camp->getActualAutodromo()]->carrosParaCorrida();
-    
+
     mostra_janela_inicial();
     //Mostra Janela inicial - mostra competidores e resp carros
-    
+
     //Mostra Janela Corrida - mostra interface atualizada com pista e classificação
     return true;
 }
 
+/*
 void TextUI::mostra_janela_passatempo(int num)
 {   
     Consola::gotoxy(0,1);
+    */
+bool TextUI::mostra_janela_passatempo(int num) {
+    Consola::gotoxy(0, 1);
     Consola::clrscr();
-    cout << "A corrida do " << camp->getAutodromoCampeonato()[camp->getActualAutodromo()]->getNome() << ": "<<  endl;
-    
+    cout << "A corrida do " << camp->getAutodromoCampeonato()[camp->getActualAutodromo()]->getNome() << ": " << endl;
+
     int n_carros_2 = camp->getConcorrentes().size();
-    
-    Consola::gotoxy(0,1);    
-    
-    for(int h=0;h<n_carros_2;h++){
-        Consola::setBackgroundColor(Consola::CINZENTO+h);
-        for(int k=0;k<100;k++){
-            cout << " " ;
+
+    Consola::gotoxy(0, 1);
+
+    for (int h = 0; h < n_carros_2; h++) {
+        Consola::setBackgroundColor(Consola::CINZENTO + h);
+        for (int k = 0; k < 100; k++) {
+            cout << " ";
         }
         Consola::setBackgroundColor(Consola::PRETO);
-        cout << " FINAL\n" ;
+        cout << " FINAL\n";
     }
-   
+
     //O BACKGORUND COLOR TEM DE SER ESCRITO ANTES DO AVANÇO DOS CARROS
-        //FAZER GOTOXY(0,1)
-    Consola::gotoxy(0,1);
+    //FAZER GOTOXY(0,1)
+    Consola::gotoxy(0, 1);
     //Consola::getch();
     //cout << camp->getConcorrentes()[0]->getPosicao_x();
     //cout << camp->getConcorrentes()[1]->getPosicao_x();
-    
-    for(int i=0;i<n_carros_2 ;i++)
-    {   
+
+    for (int i = 0; i < n_carros_2; i++) {
         //camp->getConcorrentes()[i]->setPosicao(num);
         //Consola::gotoxy(camp->getConcorrentes()[i]->getPosicao_x(), i+1);
-        Consola::gotoxy(camp->getConcorrentes()[i]->getPosicao_x(), i+1);
-        cout << camp->getConcorrentes()[i]->getID();
+        Consola::gotoxy(camp->getConcorrentes()[i]->getPosicao_x(), i + 1);
+        cout << camp->getConcorrentes()[i]->getID() << endl;
         //Consola::setBackgroundColor(Consola::CINZENTO+i);
         /*
         for(int j=0;j<100;j++)
@@ -102,61 +107,68 @@ void TextUI::mostra_janela_passatempo(int num)
         Consola::setBackgroundColor(Consola::PRETO);
         //cout << " FINAL\n" ;
         //cout << camp->getConcorrentes()[i]->getPosicao_x();
-        
+
+    }
+    Consola::gotoxy(0, n_carros_2 + 9);
+    camp->getAutodromoCampeonato()[camp->getActualAutodromo()]->mostraClassificacaoCorrida();
+    for (int i = 0; i < camp->getConcorrentes().size(); i++) {
+        if (camp->getConcorrentes().at(i)->getPosicao_x() >= camp->getAutodromoCampeonato().at(camp->getActualAutodromo())->getComprimento()) {
+            cout << "FIM da CORRIDA!\n";
+            Consola::getch();
+            return true;
+        }
     }
     //cout << camp->getConcorrentes()[0]->getPosicao_x();
     //cout << camp->getConcorrentes()[1]->getPosicao_x();
-    Consola::gotoxy(0,n_carros_2+1);
+    Consola::gotoxy(0, n_carros_2 + 14);
     //Consola::getch();
-    
+
     //FALTA NA PARTE FINAL ESCREVER A CLASSIFICAÇÃO
-    
+    return false;
 }
 
-void TextUI::mostra_janela_inicial(){
-        
-    cout << "----------------------------------------- Simulador de Corridas -----------------------------------------" << endl;
+void TextUI::mostra_janela_inicial() {
+
+    cout << "------------------------ Simulador de Corridas -----------------------------------------" << endl;
     //camp->mostraAutodromos()[0];
     //int n_carros = camp->getTodasAsPistas().size();
     int n_carros_2 = camp->getConcorrentes().size();
     //    cout << "N_Carros: " << n_carros <<endl;
-    
-    Consola::gotoxy(0,1);
-   
+
+    Consola::gotoxy(0, 1);
+
     //cout << camp->getConcorrentes()[0]->getID() ;
-    
-    Consola::setScreenSize(15,120);
+
+    Consola::setScreenSize(15, 120);
     //Consola::setBackgroundColor(Consola::CINZENTO);
-    
-    for(int i=0;i<n_carros_2 ;i++)
-    {   
+
+    for (int i = 0; i < n_carros_2; i++) {
         cout << camp->getConcorrentes()[i]->getID();
-        Consola::setBackgroundColor(Consola::CINZENTO+i);
-        
-        for(int j=0;j<100;j++)
-        {
+        Consola::setBackgroundColor(Consola::CINZENTO + i);
+
+        for (int j = 0; j < 100; j++) {
             cout << " ";
         }
         Consola::setBackgroundColor(Consola::PRETO);
-        cout << " FINAL\n" ;
+        cout << " FINAL\n";
     }
-    
+
     cout << "\n\t Pilotos Concorrentes: " << endl;
-    
-    for(int i=0;i<camp->getConcorrentes().size();i++)
-        cout << "Nome: " << camp->getConcorrentes()[i]->getPiloto()->getNome() << " Marca: " << camp->getConcorrentes()[i]->getMarca() << " Modelo :" << camp->getConcorrentes()[i]->getModelo() << endl;
-    
-        Consola::setBackgroundColor(Consola::PRETO);
-        Consola::getch();
-        Consola::clrscr();
-        
-    //FÇ MOSTRA CLASSIFICAÇÃO
-   /* cout << "-------Classificacao Atual-----------------" << endl;
-    cout << "1o: " << "Andre \n" << endl;
-    cout << "2o: " << "Leo \n" << endl;
-    cout << "3o: " << "Joao \n" << endl;
+
+    for (int i = 0; i < camp->getConcorrentes().size(); i++)
+        cout << " Marca: " << camp->getConcorrentes()[i]->getMarca() << " Modelo :" << camp->getConcorrentes()[i]->getModelo() << endl << "Nome: " << camp->getConcorrentes().at(i)->getPiloto()->getNome() << endl;
+
+    Consola::setBackgroundColor(Consola::PRETO);
     Consola::getch();
-    */
+    Consola::clrscr();
+
+    //FÇ MOSTRA CLASSIFICAÇÃO
+    /* cout << "-------Classificacao Atual-----------------" << endl;
+     cout << "1o: " << "Andre \n" << endl;
+     cout << "2o: " << "Leo \n" << endl;
+     cout << "3o: " << "Joao \n" << endl;
+     Consola::getch();
+     */
 }
 
 void TextUI::imprimeNome() {
@@ -167,24 +179,23 @@ bool TextUI::leComandos(string comando) {
     vector<string> stringSeparada;
     string aux;
     stringSeparada = separaComando(comando, ' ');
-    
+
     if (stringSeparada[0] == "fim") {
-        if (dvg->getVectorCarros().size() != 0) {
-            if (dvg->getVectorPilotos().size() != 0) {
-                if (camp->getTodasAsPistas().size() != 0) {
-                    return false;}}}}
+        return false;
+    }
     if (stringSeparada[0] == "campeonato") {
         Consola::clrscr();
         if (stringSeparada.size() > 1) {
             int flag = 0;
             for (int i = 1; i < stringSeparada.size(); i++) {
                 for (int j = 0; j < camp->getTodasAsPistas().size(); j++) {
-                    if (camp->getTodasAsPistas()[j].getNome() == stringSeparada[i]) { // algum tipo de erro aqui
+                    if (camp->getTodasAsPistas()[j].getNome().compare(stringSeparada[i])) { // algum tipo de erro aqui
                         flag = 1;
                         break;
                     }
                 }
                 if (flag == 0) {
+                    imprimeErro(" ");
                     cout << "Este autodromo '" << stringSeparada[i] << "' nao existe!\n";
                     return true;
 
@@ -198,90 +209,108 @@ bool TextUI::leComandos(string comando) {
                 }
             }
             if (dvg->getVectorCarros().size() == 0) {
-                cout << "Nao existe carros\n";
+                imprimeErro("Nao existe carros\n");
             }
             if (dvg->getVectorPilotos().size() == 0) {
-                cout << "Nao existe pilotos\n";
+                imprimeErro("Nao existe pilotos\n");
             }
             if (camp->getTodasAsPistas().size() == 0) {
-                cout << "Nao existem autodromos\n";
+                imprimeErro("Nao existem autodromos\n");
             }
         } else {
-            cout << "Numero de argumentos errado! Ex: campeonato <autodromo1> <autodromo2>...\n";
+            imprimeErro("Numero de argumentos errado! Ex: campeonato <autodromo1> <autodromo2>...\n");
         }
     } else if (stringSeparada[0] == "cria") {
         if (stringSeparada[1] == "c") {
             if (stringSeparada.size() == 6) {
                 dvg->addCarro(Carro(atoi(stringSeparada[2].c_str()), atoi(stringSeparada[3].c_str()), atoi(stringSeparada[4].c_str()), stringSeparada[5]));
+                imprimeLog("Carro criado com sucesso!\n");
             } else if (stringSeparada.size() == 7) {
                 dvg->addCarro(Carro(atoi(stringSeparada[2].c_str()), atoi(stringSeparada[3].c_str()), atoi(stringSeparada[4].c_str()), stringSeparada[5], stringSeparada[6]));
+                imprimeLog("Carro criado com sucesso!\n");
             } else {
-                cout << "Comando mal implementado -->EX: cria c <cap_min> <cap_max> <marca> <modelo>\n";
+                imprimeErro("Comando mal implementado -->EX: cria c <cap_min> <cap_max> <marca> <modelo>\n");
             }
         } else if (stringSeparada[1] == "p") {
             if (stringSeparada[2] == "crazy" || stringSeparada[2] == "surpresa" || stringSeparada[2] == "rapido") {
                 aux = juntarNome(stringSeparada, 3);
-                dvg->addPiloto(Piloto(stringSeparada[2], aux));
+                dvg->addPiloto(stringSeparada[2], aux);
+                imprimeLog("Piloto criado com sucesso!\n");
             } else {
-                cout << "Comando mal implementado -->EX: cria p tipo nome\n";
+                imprimeErro("Comando mal implementado -->EX: cria p tipo nome\n");
             }
         } else if (stringSeparada[1] == "a") {
             if (stringSeparada.size() == 5) {
-                camp->addAutodromo(Autodromo(atoi(stringSeparada[2].c_str()), atoi(stringSeparada[3].c_str()), stringSeparada[4]));
+                camp->addAutodromo(atoi(stringSeparada[2].c_str()), atoi(stringSeparada[3].c_str()), stringSeparada[4]);
+                imprimeLog("Autodromo criado com sucesso!\n");
             } else {
-                cout << "Comando mal implementado -->EX: cria a <pistas> <comprimento> <nome>\n";
+                imprimeErro("Comando mal implementado -->EX: cria a <pistas> <comprimento> <nome>\n");
             }
         }
     } else if (stringSeparada[0] == "carregap") {
         if (stringSeparada.size() == 2) {
             if (!comandoLoadPilotos(stringSeparada[1])) {
+                imprimeErro(" ");
                 cout << "Ficheiro " << stringSeparada[1] << " nao encontrado!\n";
-            }
             } else {
-            cout << "Numero de argumentos errado!\n";
+                imprimeLog("Ficheiro carregado com sucesso!\n");
+            }
+        } else {
+            imprimeErro("Numero de argumentos errado!\n");
         }
     } else if (stringSeparada[0] == "carregac") {
         if (stringSeparada.size() == 2) {
             if (!comandoLoadCarros(stringSeparada[1])) {
+                imprimeErro(" ");
                 cout << "Ficheiro " << stringSeparada[1] << " nao encontrado!\n";
+            } else {
+                imprimeLog("Ficheiro carregado com sucesso!\n");
             }
         } else {
-            cout << "Numero de argumentos errado!\n";
+            imprimeErro("Numero de argumentos errado!\n");
         }
     } else if (stringSeparada[0] == "carregaa") {
         if (stringSeparada.size() == 2) {
             if (!comandoLoadAutodromos(stringSeparada[1])) {
+                imprimeErro(" ");
                 cout << "Ficheiro " << stringSeparada[1] << " nao encontrado!\n";
+            } else {
+                imprimeLog("Ficheiro carregado com sucesso!\n");
             }
         } else {
-            cout << "Numero de argumentos errado!\n";
+            imprimeErro("Numero de argumentos errado!\n");
         }
     } else if (stringSeparada[0] == "apaga") {
         if (stringSeparada[1] == "c") {
             if (stringSeparada[2].size() == 1) {
                 if (comandoRemoveCarro(stringSeparada[2])) {
+                    imprimeLog(" ");
                     cout << "Carro " << stringSeparada[2] << " eliminado!\n";
                 } else {
-                    cout << "Carro nao existe!\n";
+                    imprimeErro("Carro nao existe!\n");
                 }
             } else {
-                cout << "Id demasiado grande!\n";
+                imprimeErro("Id demasiado grande!\n");
             }
         } else if (stringSeparada[1] == "p") {
             aux = juntarNome(stringSeparada, 2);
             if (comandoRemovePiloto(aux)) {
+                imprimeLog(" ");
                 cout << "Piloto " << aux << " eliminado!\n";
             } else {
+                imprimeErro(" ");
                 cout << "Piloto " << aux << " nao existe!\n";
             }
         } else if (stringSeparada[1] == "a") {
             if (comandoRemoveAutodromo(stringSeparada[2])) {
+                imprimeLog(" ");
                 cout << "Autodromo " << stringSeparada[2] << " eliminado!\n";
             } else {
+                imprimeErro(" ");
                 cout << "Autodromo " << stringSeparada[2] << " nao existe!\n";
             }
         } else {
-            cout << "Comando mal escrito!\n";
+            imprimeErro("Comando mal escrito!\n");
         }
     } else if (stringSeparada[0] == "entranocarro") {
         if (stringSeparada.size() > 2) {
@@ -289,26 +318,39 @@ bool TextUI::leComandos(string comando) {
             aux = comandoEntraNoCarro(stringSeparada);
             switch (aux) {
                 case -1:
-                    cout << "Piloto nao existe!\n";
+                    imprimeErro("Piloto nao existe!\n");
                     break;
                 case 0:
-                    cout << "Carro nao existe!\n";
+                    imprimeErro("Carro nao existe!\n");
                     break;
                 case 1:
-                    cout << "Piloto entrou no carro com sucesso!\n";
+                    imprimeLog("Piloto entrou no carro com sucesso!\n");
+                    break;
+                case 2:
+                    imprimeErro("Piloto ja se encontra noutro carro!\n");
+                    break;
+                case 3:
+                    imprimeErro("Carro ja se encontra ocupado!\n");
+                    break;
             }
         } else {
-            cout << "Comando mal escrito! entranocarro <idCarro> <nomePiloto>\n";
+            imprimeErro("Comando mal escrito! entranocarro <idCarro> <nomePiloto>\n");
+
         }
     } else if (stringSeparada[0] == "saidocarro") {
         if (dvg->encontraCarro(stringSeparada[1][0])) {
             if (dvg->buscaCarro(stringSeparada[1][0])->getPiloto() != NULL) {
+                dvg->buscaCarro(stringSeparada[1][0])->getPiloto()->setCarro(false);
                 dvg->buscaCarro(stringSeparada[1][0])->setPiloto(NULL);
+                dvg->buscaCarro(stringSeparada[1][0])->setOcupado(false);
+                imprimeLog("Piloto saio do carro com sucesso!\n");
             } else {
-                cout << "Carro encontra ja se sem piloto!\n";
+                imprimeErro("Carro encontra ja se sem piloto!\n");
+                //cout << "Carro encontra ja se sem piloto!\n";
             }
         } else {
-            cout << "Carro nao existe!\n";
+            imprimeErro("Carro nao existe!\n");
+            //cout << "Carro nao existe!\n";
         }
     } else if (stringSeparada[0] == "lista") {
         dvg->listarPilotos();
@@ -316,7 +358,7 @@ bool TextUI::leComandos(string comando) {
         dvg->listarCarros();
         cout << "---------------------------\n";
         camp->mostraAutodromos();
-        
+
     } else if (stringSeparada[0] == "savedgv") {
 
     } else if (stringSeparada[0] == "loaddvg") {
@@ -324,7 +366,8 @@ bool TextUI::leComandos(string comando) {
     } else if (stringSeparada[0] == "deldvg") {
 
     } else {
-        cout << "Este comando nao existe!\n";
+        imprimeErro("Este comando nao existe!\n");
+        //cout << "Este comando nao existe!\n";
     }
 }
 
@@ -334,16 +377,19 @@ bool TextUI::leComandosModo2(string comando) {
     if (stringSeparada[0] == "fim") {
         return false;
     } else if (stringSeparada[0] == "passatempo") {
-        if ( stringSeparada.size() == 2){
+        if (stringSeparada.size() == 2) {
             //ESTE COMANDO AUMENTA A POSICAO CONSOANTE A VELOCIDADE/TRAVAGEM
-                //para esta 1a meta foi deixado em comentario
-            
+            //para esta 1a meta foi deixado em comentario
+
             comandoPassaTempo(atoi(stringSeparada[1].c_str()));
-            mostra_janela_passatempo(atoi(stringSeparada[1].c_str()));
-        }else {
+            if(mostra_janela_passatempo(atoi(stringSeparada[1].c_str()))){
+                cout << "Corrida acabou !\n";
+                return false;
+            }
+        } else {
             cout << "Comando mal escrito! passatempo <int>\n";
         }
-    } else{
+    } else {
         return true;
     }
 }
@@ -373,14 +419,24 @@ int TextUI::comandoEntraNoCarro(vector<string> comando) {
     string aux;
     Carro * c;
     if (dvg->encontraCarro(comando[1][0])) {
-        aux = juntarNome(comando, 2);
-        if (dvg->encontraPiloto(aux)) {
-            dvg->buscaCarro(comando[1][0])->setPiloto(dvg->buscaPiloto(aux));
+        if (!dvg->buscaCarro(comando[1][0])->getOcupado()) {
+            aux = juntarNome(comando, 2);
+            if (dvg->encontraPiloto(aux)) {
+                if (!dvg->buscaPiloto(aux)->getCarro()) {
+                    dvg->buscaCarro(comando[1][0])->setPiloto(dvg->buscaPiloto(aux));
+                    dvg->buscaPiloto(aux)->setCarro(true);
+                    dvg->buscaCarro(comando[1][0])->setOcupado(true);
+                } else {
+                    return 2;
+                }
+
+            } else {
+                return -1;
+            }
         } else {
-            return -1;
+            return 3;
         }
     } else {
-
         return 0;
     }
     return 1;
@@ -388,7 +444,6 @@ int TextUI::comandoEntraNoCarro(vector<string> comando) {
 
 bool TextUI::comandoRemoveCarro(string id) {
     if (!dvg->removeCarro(id[0])) {
-
         return false;
     }
     return true;
@@ -396,7 +451,10 @@ bool TextUI::comandoRemoveCarro(string id) {
 
 bool TextUI::comandoRemovePiloto(string nome) {
     Carro * c = dvg->verSePilotoEstaAoVolante(nome);
-    c->setPiloto(NULL);
+    if (c != NULL) {
+        c->setPiloto(NULL);
+        c->setOcupado(false);
+    }
     if (!dvg->removePiloto(nome)) {
         return false;
     }
@@ -423,9 +481,9 @@ bool TextUI::comandoLoadPilotos(string ficheiro) {
         stringSeparada = separaComando(linha, ' ');
         if (stringSeparada.size() > 2) {
             aux = juntarNome(stringSeparada, 1);
-            dvg->addPiloto(Piloto(stringSeparada[0], this->toLower(aux)));
+            dvg->addPiloto(stringSeparada[0], this->toLower(aux));
         } else if (stringSeparada.size() == 2) {
-            dvg->addPiloto(Piloto(stringSeparada[0], this->toLower(stringSeparada[1])));
+            dvg->addPiloto(stringSeparada[0], this->toLower(stringSeparada[1]));
         }
     }
     dados.close();
@@ -461,10 +519,11 @@ bool TextUI::comandoLoadAutodromos(string ficheiro) {
         stringSeparada = separaComando(linha, ' ');
 
         //cout << stringSeparada[0] << " " << stringSeparada[1] << " " << stringSeparada[2] << endl;
-        camp->addAutodromo(Autodromo(atoi(stringSeparada[0].c_str()), atoi(stringSeparada[1].c_str()), stringSeparada[2]));
+        //camp->addAutodromo(Autodromo(atoi(stringSeparada[0].c_str()), atoi(stringSeparada[1].c_str()), stringSeparada[2]));
         
-        camp->addAutodromo(Autodromo(atoi(stringSeparada[0].c_str()), atoi(stringSeparada[1].c_str()), this->toLower(stringSeparada[2])));
+        camp->addAutodromo(atoi(stringSeparada[0].c_str()), atoi(stringSeparada[1].c_str()), this->toLower(stringSeparada[2]));
 
+        //camp->addAutodromo(atoi(stringSeparada[0].c_str()), atoi(stringSeparada[1].c_str()), this->toLower(stringSeparada[2]));
     }
     dados.close();
 
@@ -478,7 +537,6 @@ vector<string> TextUI::separaComando(string comando, char separador) {
     string token;
     while (getline(ss, token, separador)) {
         if (!token.empty()) {
-
             stringSeparada.push_back(token);
         }
     }
@@ -499,7 +557,7 @@ string TextUI::toLower(string str) {
     return str;
 }
 
-string TextUI::toUpper(string str){
+string TextUI::toUpper(string str) {
     transform(str.begin(), str.end(), str.begin(), ::toupper);
     return str;
 }
@@ -507,8 +565,28 @@ string TextUI::toUpper(string str){
 void TextUI::comandoPassaTempo(int passa) {
     for (int i = passa; i > 0; i--) {
         camp->getAutodromoCampeonato()[camp->getActualAutodromo()]->passaUmSegundo();
+        /*for (int j = 0; j < camp->getConcorrentes().size(); j++) {
+            if (camp->getConcorrentes().at(i)->getPosicao() == camp->getAutodromoCampeonato().at(camp->getActualAutodromo())->getComprimento()) {
+                cout << "FIM da CORRIDA!\n";
+                Consola::getch();
+                break;
+            }
+        }*/
     }
-    camp->getAutodromoCampeonato()[camp->getActualAutodromo()]->mostraClassificacaoCorrida();
+}
+
+void TextUI::imprimeErro(string msg) {
+    Consola::setTextColor(Consola::VERMELHO_CLARO);
+    cout << "[ERRO] ";
+    Consola::setTextColor(Consola::BRANCO_CLARO);
+    cout << msg;
+}
+
+void TextUI::imprimeLog(string msg) {
+    Consola::setTextColor(Consola::VERDE_CLARO);
+    cout << "[LOG] ";
+    Consola::setTextColor(Consola::BRANCO_CLARO);
+    cout << msg;
 }
 
 TextUI::~TextUI() {

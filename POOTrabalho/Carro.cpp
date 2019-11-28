@@ -8,10 +8,9 @@
 
 char Carro::letra = 'a';
 
-Carro::Carro(int velocidade_max, int cap_min , int cap_max ,string marca, string modelo ){
+Carro::Carro(int velocidade_max, int cap_min , int cap_max ,string marca, string modelo ) : modelo(modelo){
     this->piloto = NULL;
     this->marca = marca;
-    this->modelo = modelo;
     this->pos = 0;
     this->pos_x=0;
     this->cap_min = cap_min;
@@ -22,6 +21,7 @@ Carro::Carro(int velocidade_max, int cap_min , int cap_max ,string marca, string
     this->trava = false;
     this->sinal_emergencia = false;
     this->id = this->letra;
+    this->ocupado = false;
     this->letra++;
 }
 
@@ -31,6 +31,14 @@ string Carro::getMarca() const{
 
 string Carro::getModelo() const{
     return modelo;
+}
+
+bool Carro::getOcupado(){
+    return ocupado;
+}
+
+void Carro::setOcupado(bool ocupado){
+    this->ocupado = ocupado;
 }
 
 char Carro::getID() const{
@@ -73,7 +81,7 @@ void Carro::setPosicao(int pos){
 void Carro::mostrarCarro(){
     cout << "ID: " << this->id << " Marca:  " << this->marca << "  Modelo: " << this->modelo << endl;
     if(this->piloto != NULL){
-        cout << "0 piloto " << piloto->getNome() << " encontra se ao volante!\n";
+        cout << "0 piloto " << piloto->getNome() << endl << " encontra se ao volante!\n";
     }
 }
 

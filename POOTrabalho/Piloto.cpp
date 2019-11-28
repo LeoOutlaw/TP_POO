@@ -22,11 +22,11 @@ Piloto::Piloto(const Piloto& piloto){
 }
 
 string Piloto::getNome() const{
-    return nome;
+    return this->nome;
 }
 
 void Piloto::mostrarPiloto(){
-    cout << " Nome :  " << this->nome  << "  Tipo :  " << this->tipo << endl;
+    cout <<  "Tipo :  " << tipo << "  Nome :  " << nome  << endl;
 }
 
 string Piloto::getTipo() const{
@@ -41,6 +41,13 @@ void Piloto::setPontos(int pontos){
     this->pontos = pontos;
 }
 
+bool Piloto::getCarro(){
+    return carro;
+}
+
+void Piloto::setCarro(bool val){
+    carro = val;
+}
 
 Piloto::~Piloto(){
     

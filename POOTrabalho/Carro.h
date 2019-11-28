@@ -37,11 +37,14 @@ class Carro {
     bool acelera;
     //int trata_carro;  // Saber o que o piloto esta a fazer, se esta a acelarar travar ou nem um nem outro
     bool sinal_emergencia;
+    bool ocupado;
     static char letra;
 public:
     Carro(int velocidade, int cap_min, int cap_max, string marca, string modelo = "modelo base");
     string getMarca() const;
     string getModelo() const;
+    bool getOcupado();
+    void setOcupado(bool ocupado);
     char getID() const;
     bool getAcelera();
     bool getTrava();

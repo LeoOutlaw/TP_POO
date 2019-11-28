@@ -58,7 +58,7 @@ void Autodromo::mostraClassificacaoCorrida() {
     for (int i = 0; i < classificacao.size(); i++) {
         cout << i+1 << "º. " << classificacao[i]->getID() << " " << classificacao[i]->getMarca() << " / "
                 << classificacao[i]->getPiloto()->getNome() << " (" << classificacao[i]->getPiloto()->getTipo()
-                << ") - " << classificacao[i]->getPosicao() << " - " << classificacao[i]->getVelocidade() << endl;
+                << ") - " << classificacao[i]->getPosicao_x() << " - " << classificacao[i]->getVelocidade() << endl;
     }
 }
 

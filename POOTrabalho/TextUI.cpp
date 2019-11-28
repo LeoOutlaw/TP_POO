@@ -26,7 +26,11 @@ void TextUI::start() {
     comandoLoadCarros("c.txt");
     comandoLoadPilotos("p.txt");
     comandoLoadAutodromos("a.txt");
+    
     do {
+        cout << "Comandos Disponiveis: \n\tcarregap <nomefich>\n\tcarregac <nomefich>\n\tcarregac <nomefich>\n";
+        cout << "\tentranocarro <id> <nome_p>\n";
+        cout << "\tsaidocarro <id> <nome_p>\n";
         cout << "Consola Modo1> ";
         getline(cin, comando);
     } while (leComandos(this->toLower(comando)));
@@ -55,6 +59,7 @@ bool TextUI::iniciaModo2(){
     //Mostra Janela Corrida - mostra interface atualizada com pista e classificação
     return true;
 }
+
 void TextUI::mostra_janela_passatempo(int num)
 {   
     Consola::gotoxy(0,1);
@@ -206,9 +211,9 @@ bool TextUI::leComandos(string comando) {
         }
     } else if (stringSeparada[0] == "cria") {
         if (stringSeparada[1] == "c") {
-            if (stringSeparada.size() == 5) {
-                dvg->addCarro(Carro(atoi(stringSeparada[2].c_str()), atoi(stringSeparada[3].c_str()), atoi(stringSeparada[4].c_str()), stringSeparada[4]));
-            } else if (stringSeparada.size() == 6) {
+            if (stringSeparada.size() == 6) {
+                dvg->addCarro(Carro(atoi(stringSeparada[2].c_str()), atoi(stringSeparada[3].c_str()), atoi(stringSeparada[4].c_str()), stringSeparada[5]));
+            } else if (stringSeparada.size() == 7) {
                 dvg->addCarro(Carro(atoi(stringSeparada[2].c_str()), atoi(stringSeparada[3].c_str()), atoi(stringSeparada[4].c_str()), stringSeparada[5], stringSeparada[6]));
             } else {
                 cout << "Comando mal implementado -->EX: cria c <cap_min> <cap_max> <marca> <modelo>\n";
@@ -455,7 +460,7 @@ bool TextUI::comandoLoadAutodromos(string ficheiro) {
         getline(dados, linha);
         stringSeparada = separaComando(linha, ' ');
 
-        cout << stringSeparada[0] << " " << stringSeparada[1] << " " << stringSeparada[2] << endl;
+        //cout << stringSeparada[0] << " " << stringSeparada[1] << " " << stringSeparada[2] << endl;
         camp->addAutodromo(Autodromo(atoi(stringSeparada[0].c_str()), atoi(stringSeparada[1].c_str()), stringSeparada[2]));
         
         camp->addAutodromo(Autodromo(atoi(stringSeparada[0].c_str()), atoi(stringSeparada[1].c_str()), this->toLower(stringSeparada[2])));

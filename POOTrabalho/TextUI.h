@@ -22,16 +22,19 @@
 #include <string>
 #include <vector>
 #include <cctype>
-#include "DVG.h"
+#include <cstring>
+#include "DGV.h"
 #include "Campeonato.h"
 #include "Consola.h"
 
 using namespace std;
 
 class TextUI {
-    DVG * dvg;
+    vector<DGV> dgv;
     Campeonato * camp;
     int iter;
+    static int count;
+    static int flag;
 public:
     TextUI();
 
@@ -47,8 +50,16 @@ public:
     bool comandoRemovePiloto(string nome);
     bool comandoRemoveAutodromo(string nome);
     int comandoEntraNoCarro(vector <string> comando);
+    bool comandoSaveDGV(string nome);
+    bool comandoLoadDGV(string nome);
+    bool comandoDelDGV(string nome);
     bool comandoCampeonato(vector<string> comando);
     void comandoPassaTempo(int passa);
+    bool comandoDestroi(Carro * carro);
+    void comandoListaCarros();
+    int comandoCarregaBat(vector<string> comando);
+    void comandoCarregaTudo();
+    bool comandoAcidente(char carro);
     string juntarNome(vector<string> nome, int num);
     bool iniciaModo2();
     bool mostra_janela_passatempo(int num);

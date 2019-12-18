@@ -8,9 +8,11 @@
       <itemPath>Campeonato.h</itemPath>
       <itemPath>Carro.h</itemPath>
       <itemPath>Consola.h</itemPath>
-      <itemPath>Crazy.h</itemPath>
-      <itemPath>DVG.h</itemPath>
+      <itemPath>CrazyPiloto.h</itemPath>
+      <itemPath>DGV.h</itemPath>
       <itemPath>Piloto.h</itemPath>
+      <itemPath>RapidoPiloto.h</itemPath>
+      <itemPath>SurpresaPiloto.h</itemPath>
       <itemPath>TextUI.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
@@ -24,8 +26,11 @@
       <itemPath>Campeonato.cpp</itemPath>
       <itemPath>Carro.cpp</itemPath>
       <itemPath>Consola.cpp</itemPath>
-      <itemPath>DVG.cpp</itemPath>
+      <itemPath>CrazyPiloto.cpp</itemPath>
+      <itemPath>DGV.cpp</itemPath>
       <itemPath>Piloto.cpp</itemPath>
+      <itemPath>RapidoPiloto.cpp</itemPath>
+      <itemPath>SurpresaPiloto.cpp</itemPath>
       <itemPath>TextUI.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
@@ -67,15 +72,25 @@
       </item>
       <item path="Consola.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Crazy.h" ex="false" tool="3" flavor2="0">
+      <item path="CrazyPiloto.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="DVG.cpp" ex="false" tool="1" flavor2="0">
+      <item path="CrazyPiloto.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="DVG.h" ex="false" tool="3" flavor2="0">
+      <item path="DGV.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DGV.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Piloto.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Piloto.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="RapidoPiloto.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="RapidoPiloto.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SurpresaPiloto.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="SurpresaPiloto.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="TextUI.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -120,15 +135,25 @@
       </item>
       <item path="Consola.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="Crazy.h" ex="false" tool="3" flavor2="0">
+      <item path="CrazyPiloto.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="DVG.cpp" ex="false" tool="1" flavor2="0">
+      <item path="CrazyPiloto.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="DVG.h" ex="false" tool="3" flavor2="0">
+      <item path="DGV.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="DGV.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="Piloto.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="Piloto.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="RapidoPiloto.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="RapidoPiloto.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="SurpresaPiloto.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="SurpresaPiloto.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="TextUI.cpp" ex="false" tool="1" flavor2="0">
       </item>

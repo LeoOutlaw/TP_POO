@@ -16,7 +16,7 @@ int Campeonato::getActualAutodromo(){
 }
 
 void Campeonato::setActualAutodromo(int prox){
-    this->actualAutodromo++;
+    this->actualAutodromo = prox;
 }
 
 vector <Autodromo*> Campeonato::getAutodromoCampeonato(){
@@ -38,7 +38,7 @@ void Campeonato::addAutodromoParaCampeonato( Autodromo *autodromo){
 
 bool Campeonato::removeAutodromo(string nome){
     for (int i = 0; i < todas_as_pistas.size(); i++) {
-        if (todas_as_pistas[i].getNome().compare(nome)) {
+        if (todas_as_pistas[i].getNome().compare(nome) == 0) {
             todas_as_pistas.erase(todas_as_pistas.begin() + i);
             return true;
         }
@@ -57,15 +57,28 @@ vector <Autodromo> Campeonato::getTodasAsPistas(){
 
 Autodromo *Campeonato::getPista(string nome) {
     for (int i = 0; i < todas_as_pistas.size(); i++) {
-        if (todas_as_pistas[i].getNome().compare(nome)) {
+        if (todas_as_pistas[i].getNome().compare(nome) == 0) {
             return &todas_as_pistas[i];
         }
     }
     return NULL;
 }
 
-void Campeonato::addConcorrentes(Carro *carro){
-    concorrentes.push_back(carro);
+void Campeonato::addConcorrentes(int vel, double cap_ini, int cap_max, string marca, char id, Piloto * piloto, string modelo){
+    concorrentes.push_back( new Carro(vel,cap_ini, cap_max, marca, id , piloto, modelo));
+}
+
+void Campeonato::destroiCarro(Carro* carro){
+    for (int i= 0; i < concorrentes.size(); i++){
+        if (concorrentes[i]->getID() == carro->getID()){
+           concorrentes.erase(concorrentes.begin() + i);
+           delete concorrentes[i];
+        }
+    }
+    for (int i= 0; i < concorrentes.size(); i++){
+        cout << concorrentes[i]->getID() << endl;
+    }
+    
 }
 
 void Campeonato::addConcorrentesAoAutodromo(){
@@ -77,7 +90,13 @@ void Campeonato::addConcorrentesAoAutodromo(){
 void Campeonato::mostraClassificacaoFinal() {
     cout << " Informacao sobre a classificacao do campeonato\n";
     for (int i = 0; i < classificacao.size(); i++) {
-        cout << i+1 <<"º---- " << classificacao[i].getNome() << endl;
+        cout << i+1 <<"º---- " << classificacao[i]->getNome() << endl;
     }
 }
 
+Campeonato::~Campeonato(){
+    for (int i = 0; i < concorrentes.size(); i++){
+        delete concorrentes[i];
+    }
+    concorrentes.clear();
+}

@@ -1,10 +1,16 @@
-build/Debug/MinGW-Windows/Autodromo.o: Autodromo.cpp Autodromo.h DVG.h \
- Piloto.h Carro.h
+build/Debug/MinGW-Windows/Autodromo.o: Autodromo.cpp Autodromo.h DGV.h \
+ Piloto.h Carro.h CrazyPiloto.h RapidoPiloto.h SurpresaPiloto.h
 
 Autodromo.h:
 
-DVG.h:
+DGV.h:
 
 Piloto.h:
 
 Carro.h:
+
+CrazyPiloto.h:
+
+RapidoPiloto.h:
+
+SurpresaPiloto.h:

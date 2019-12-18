@@ -39,8 +39,11 @@ OBJECTFILES= \
 	${OBJECTDIR}/Campeonato.o \
 	${OBJECTDIR}/Carro.o \
 	${OBJECTDIR}/Consola.o \
-	${OBJECTDIR}/DVG.o \
+	${OBJECTDIR}/CrazyPiloto.o \
+	${OBJECTDIR}/DGV.o \
 	${OBJECTDIR}/Piloto.o \
+	${OBJECTDIR}/RapidoPiloto.o \
+	${OBJECTDIR}/SurpresaPiloto.o \
 	${OBJECTDIR}/TextUI.o \
 	${OBJECTDIR}/main.o
 
@@ -89,15 +92,30 @@ ${OBJECTDIR}/Consola.o: Consola.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Consola.o Consola.cpp
 
-${OBJECTDIR}/DVG.o: DVG.cpp
+${OBJECTDIR}/CrazyPiloto.o: CrazyPiloto.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/DVG.o DVG.cpp
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/CrazyPiloto.o CrazyPiloto.cpp
+
+${OBJECTDIR}/DGV.o: DGV.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/DGV.o DGV.cpp
 
 ${OBJECTDIR}/Piloto.o: Piloto.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Piloto.o Piloto.cpp
+
+${OBJECTDIR}/RapidoPiloto.o: RapidoPiloto.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/RapidoPiloto.o RapidoPiloto.cpp
+
+${OBJECTDIR}/SurpresaPiloto.o: SurpresaPiloto.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/SurpresaPiloto.o SurpresaPiloto.cpp
 
 ${OBJECTDIR}/TextUI.o: TextUI.cpp
 	${MKDIR} -p ${OBJECTDIR}

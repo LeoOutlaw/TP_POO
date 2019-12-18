@@ -14,18 +14,17 @@
 #include <cstdlib>
 #include <string>
 #include <iostream>
-
 #include "TextUI.h"
-#include "Carro.h"
-#include "DVG.h"
+#include "Piloto.h"
+#include "CrazyPiloto.h"
+#include <vector>
 
 using namespace std;
 
 int main(int argc, char** argv) {
-    
     TextUI * textUi = new TextUI();
     textUi->start();
-    delete [] textUi;
+    delete textUi;
     
     return 0;
 }

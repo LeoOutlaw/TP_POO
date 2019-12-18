@@ -15,16 +15,24 @@
 #define DVG_H
 
 #include <vector>
+#include <iostream>
+#include <iomanip>
 #include "Piloto.h"
 #include "Carro.h"
+#include "CrazyPiloto.h"
+#include "RapidoPiloto.h"
+#include "SurpresaPiloto.h"
 
-
-class DVG{
-    vector <Piloto> pilotos;
+class DGV{
+    string nome;
+    vector <Piloto*> pilotos;
     vector <Carro> carros;
     static char letra;
 public:
-    DVG();
+    DGV();
+    DGV(const DGV &dgv);
+    string getNome();
+    void setNome(string nome);
     bool removeCarro(char id);
     bool removePiloto(string nome);
     void addPiloto(string tipo, string nome);
@@ -37,8 +45,9 @@ public:
     Carro *buscaCarro( char id);
     Piloto *buscaPiloto (string nome);
     vector <Carro> getVectorCarros();
-    vector <Piloto> getVectorPilotos();
-    ~DVG();
+    vector <Piloto*> getVectorPilotos();
+    DGV & operator=(DGV * dgv);
+    ~DGV();
 };
 #endif /* DVG_H */
 

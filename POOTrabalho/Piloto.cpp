@@ -10,7 +10,6 @@ Piloto::Piloto(string tipo, string nome){
     this->nome = nome;
     this->tipo = tipo;
     carro = false;
-    this->lembra_comecar = 0;
     this->pontos = 0;
 }
 
@@ -18,7 +17,6 @@ Piloto::Piloto(const Piloto& piloto){
     nome = piloto.nome;
     tipo = piloto.tipo;
     carro = piloto.carro;
-    lembra_comecar = piloto.lembra_comecar;
 }
 
 string Piloto::getNome() const{
@@ -38,7 +36,7 @@ int Piloto::getPontos(){
 }
 
 void Piloto::setPontos(int pontos){
-    this->pontos = pontos;
+    this->pontos += pontos;
 }
 
 bool Piloto::getCarro(){
@@ -48,6 +46,35 @@ bool Piloto::getCarro(){
 void Piloto::setCarro(bool val){
     carro = val;
 }
+
+bool Piloto::getAcelera() const {
+    return acelera;
+}
+
+bool Piloto::getTrava() const {
+    return trava;
+}
+
+void Piloto::setAcelera(bool acelera) {
+    this->acelera = acelera;
+
+}
+
+void Piloto::setTrava(bool trava) {
+    this->trava = trava;
+
+}
+
+Piloto& Piloto::operator =(Piloto* p){
+    if(this != p){
+        this->nome = p->nome;
+        this->tipo = p->tipo;
+        this->carro = p->carro;
+        this->pontos = p->pontos;
+    }
+    return *this;
+}
+
 
 Piloto::~Piloto(){
     

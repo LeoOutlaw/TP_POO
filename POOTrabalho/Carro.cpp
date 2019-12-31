@@ -12,6 +12,7 @@ Carro::Carro(int velocidade, double cap_inicial, int cap_max, string marca, stri
     this->piloto = NULL;
     this->marca = marca;
     this->pos = 0;
+    this->pos_corrida = 0;
     this->cap_inicial = cap_inicial;
     this->cap_max = cap_max;
     this->cap_actual = cap_inicial;
@@ -21,7 +22,7 @@ Carro::Carro(int velocidade, double cap_inicial, int cap_max, string marca, stri
     this->danificado = false;
     this->id = this->letra;
     this->ocupado = false;
-    this->nr_volta = 0;
+    this->nr_volta = 1;
     this->letra++;
 }
 
@@ -29,13 +30,14 @@ Carro::Carro(int velocidade, double cap_min, int cap_max, string marca, int id, 
     this->piloto = piloto;
     this->marca = marca;
     this->pos = 0;
+    this->pos_corrida = 0;
     this->cap_inicial = cap_min;
     this->cap_max = cap_max;
     this->cap_actual = cap_min;
     this->velocidade = 0;
     this->velocidade_max = velocidade;
     this->id = id;
-    this->nr_volta = 0;
+    this->nr_volta = 1;
     this->sinal_emergencia = false;
     this->danificado = false;
     this->ocupado = true;
@@ -46,7 +48,7 @@ int Carro::getVolta() const{
 }
 
 void Carro::setVolta(int i){
-    nr_volta += i;
+    nr_volta = i;
 }
 
 string Carro::getMarca() const {
@@ -107,6 +109,14 @@ int Carro::getPosicao() {
 
 void Carro::setPosicao(int pos) {
     this->pos = pos;
+}
+
+int Carro::getPosicaoCorrida(){
+    return pos_corrida;
+}
+
+void Carro::setPosicaoCorrida(int pos){
+    this->pos_corrida = pos;
 }
 
 void Carro::mostrarCarro() {

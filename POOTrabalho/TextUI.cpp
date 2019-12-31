@@ -96,17 +96,11 @@ bool TextUI::mostra_janela_passatempo(int num) {
     //O BACKGORUND COLOR TEM DE SER ESCRITO ANTES DO AVANÇO DOS CARROS
     //FAZER GOTOXY(0,1)
     Consola::gotoxy(0, 1);
-    //Consola::getch();
-    //cout << camp->getConcorrentes()[0]->getPosicao_x();
-    //cout << camp->getConcorrentes()[1]->getPosicao_x();
-
-
 
     for (int i = 0; i < n_carros_2; i++) {
-        Consola::gotoxy(camp->getAutodromoCampeonato()[camp->getActualAutodromo()]->getCorrida()[i]->getPosicao(), i + 1);
+        Consola::gotoxy(camp->getAutodromoCampeonato()[camp->getActualAutodromo()]->getCorrida()[i]->getPosicaoCorrida(), i + 1);
         cout << camp->getAutodromoCampeonato()[camp->getActualAutodromo()]->getCorrida()[i]->getID() << endl;
         Consola::setBackgroundColor(Consola::PRETO);
-
     }
     Consola::gotoxy(0, n_carros_2 + 9);
 
@@ -151,16 +145,6 @@ void TextUI::mostra_janela_inicial() {
         cout << " Marca: " << camp->getAutodromoCampeonato()[camp->getActualAutodromo()]->getClassificacao()[i]->getMarca() << " Modelo :" << camp->getAutodromoCampeonato()[camp->getActualAutodromo()]->getClassificacao()[i]->getModelo() << endl << "Nome: " << camp->getAutodromoCampeonato()[camp->getActualAutodromo()]->getClassificacao()[i]->getPiloto()->getNome() << endl;
 
     Consola::setBackgroundColor(Consola::PRETO);
-    //Consola::getch();
-    //Consola::clrscr();
-
-    //FÇ MOSTRA CLASSIFICAÇÃO
-    /* cout << "-------Classificacao Atual-----------------" << endl;
-     cout << "1o: " << "Andre \n" << endl;
-     cout << "2o: " << "Leo \n" << endl;
-     cout << "3o: " << "Joao \n" << endl;
-     Consola::getch();
-     */
 }
 
 void TextUI::imprimeNome() {
@@ -840,7 +824,6 @@ void TextUI::comandoPassaTempo(int passa) {
         }
     }
     cl.erase(cl.begin(), cl.end());
-    Consola::getch();
 }
 
 void TextUI::comandoListaCarros() {

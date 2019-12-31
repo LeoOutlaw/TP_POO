@@ -29,6 +29,7 @@ class Carro {
     string modelo;
     char id;
     int pos;
+    int pos_corrida;
     double cap_inicial;
     int cap_max;
     int nr_volta;
@@ -54,6 +55,8 @@ public:
     char getID() const;
     int getPosicao();
     void setPosicao(int pos);
+    int getPosicaoCorrida();
+    void setPosicaoCorrida(int pos);
     int getVolta() const;
     void setVolta(int i);
     Piloto * getPiloto();

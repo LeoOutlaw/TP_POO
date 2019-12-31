@@ -63,7 +63,7 @@ void Autodromo::mostraClassificacaoCorrida() {
     for (int i = 0; i < classificacao.size(); i++) {
         cout << i + 1 << "º. " << classificacao[i]->getID() << " " << classificacao[i]->getMarca() << " / "
                 << classificacao[i]->getPiloto()->getNome() << " (" << classificacao[i]->getPiloto()->getTipo()
-                << ") - " << classificacao[i]->getPosicao() << " - " << classificacao[i]->getVelocidade()
+                << ") - Volta-> " << classificacao[i]->getVolta() << " Posicao-> " << classificacao[i]->getPosicao() << " - " << classificacao[i]->getVelocidade()
                 << " - Carga: ";
         std::cout << std::fixed;
         std::cout << std::setprecision(2);
@@ -162,6 +162,11 @@ void Autodromo::passaUmSegundo() {
                 }
             }
             corrida[i]->setPosicao(corrida[i]->getPosicao() + corrida[i]->getVelocidade());
+            corrida[i]->setPosicaoCorrida(corrida[i]->getPosicaoCorrida() + corrida[i]->getVelocidade());
+             if (corrida[i]->getPosicaoCorrida() > 100 ){
+                corrida[i]->setPosicaoCorrida(corrida[i]->getPosicaoCorrida() - 100);
+                corrida[i]->setVolta(corrida[i]->getVolta()+1);
+            }
         }
     }
     //fazer ciclo para ver quem esta com a posicao maior e trocar classificacao

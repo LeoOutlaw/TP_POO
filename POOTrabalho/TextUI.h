@@ -39,6 +39,7 @@ public:
     TextUI();
 
     bool start();
+    bool modo();
     void imprimeNome();
     bool leComandos(string comando);
     bool leComandosModo2(string comando);

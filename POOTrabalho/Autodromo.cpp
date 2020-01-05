@@ -138,7 +138,7 @@ void Autodromo::destroiCarro(Carro* carro) {
     }
 }
 
-void Autodromo::passaUmSegundo() {
+bool Autodromo::passaUmSegundo() {
     Carro * carro;
     double aux;
     for (int i = 0; i < corrida.size(); i++) {
@@ -179,6 +179,16 @@ void Autodromo::passaUmSegundo() {
         }
     }
     segundo_actual++;
+    int num = 0;
+    for (int i= 0; i < corrida.size() ; i++){
+        if(corrida[i]->getDanificado()){
+            num++;
+        }
+    }
+    if ( num == corrida.size()){
+        return true;
+    }
+    return false;
 }
 
 int Autodromo::getSegundoActual() {

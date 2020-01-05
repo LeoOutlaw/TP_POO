@@ -43,7 +43,7 @@ public:
     void mostraClassificacaoCorrida();
     void mostraAutodromo();
     void carrosParaCorrida();
-    void passaUmSegundo();
+    bool passaUmSegundo();
 
     ~Autodromo();
 };

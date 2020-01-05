@@ -43,6 +43,16 @@ Carro::Carro(int velocidade, double cap_min, int cap_max, string marca, int id, 
     this->ocupado = true;
 }
 
+void Carro::defaultCarro(){
+    this->pos = 0;
+    this->pos_corrida = 0;
+    this->velocidade = 0;
+    this->nr_volta = 1;
+    this->sinal_emergencia = false;
+    this->danificado = false;
+    this->ocupado = true;
+}
+
 int Carro::getVolta() const{
     return nr_volta;
 }

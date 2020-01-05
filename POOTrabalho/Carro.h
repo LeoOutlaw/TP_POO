@@ -44,6 +44,7 @@ class Carro {
 public:
     Carro(int velocidade, double cap_min, int cap_max, string marca, string modelo = "modelo base");
     Carro(int velocidade, double cap_min, int cap_max, string marca, int id, Piloto * piloto, string modelo = "modelo base");
+    void defaultCarro();
     string getMarca() const;
     string getModelo() const;
     double getCapActual();

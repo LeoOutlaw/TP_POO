@@ -49,6 +49,7 @@ bool TextUI::start() {
         cout << "Consola Modo2> ";
         getline(cin, comando);
     } while (leComandosModo2(this->toLower(comando)));
+
 }
 
 bool TextUI::iniciaModo2() {
@@ -56,8 +57,11 @@ bool TextUI::iniciaModo2() {
         camp->getConcorrentes()[i]->setCapActual(camp->getConcorrentes()[i]->getCapInicial());
         camp->getConcorrentes()[i]->setVelocidade(0);
         camp->getConcorrentes()[i]->setPosicao(0);
+        camp->getConcorrentes()[i]->setPosicaoCorrida(0);
         camp->getConcorrentes()[i]->getPiloto()->setAcelera(false);
         camp->getConcorrentes()[i]->getPiloto()->setTrava(false);
+        camp->getConcorrentes()[i]->setSinalEmergencia(false);
+        camp->getConcorrentes()[i]->setDanificado(false);
     }
     camp->addConcorrentesAoAutodromo();
     camp->getAutodromoCampeonato()[camp->getActualAutodromo()]->carrosParaCorrida();
@@ -109,6 +113,15 @@ bool TextUI::mostra_janela_passatempo(int num) {
         if (camp->getConcorrentes().at(i)->getVolta()*100 + camp->getConcorrentes()[i]->getPosicao() >= camp->getAutodromoCampeonato().at(camp->getActualAutodromo())->getComprimento()) {
             return true;
         }
+    }
+    int a = 0;
+    for (int i = 0; i < camp->getAutodromoCampeonato()[camp->getActualAutodromo()]->getCorrida().size(); i++) {
+        if (camp->getAutodromoCampeonato()[camp->getActualAutodromo()]->getCorrida()[i]->getDanificado()) {
+            a++;
+        }
+    }
+    if (a == camp->getAutodromoCampeonato()[camp->getActualAutodromo()]->getCorrida().size()) {
+        return true;
     }
     return false;
 }
@@ -428,33 +441,49 @@ bool TextUI::leComandosModo2(string comando) {
                         imprimeLog("CORRIDA ACABOU!\n");
                         flag = 0;
                         //classificacao final
-                        int pontos = 10;
-                        cout << "----------Classificacao final da corrida---------\n";
-                        for (int i = 0; i < camp->getAutodromoCampeonato()[camp->getActualAutodromo()]->getClassificacao().size(); i++) {
-                            camp->getAutodromoCampeonato()[camp->getActualAutodromo()]->getClassificacao()[i]->getPiloto()->setPontos(pontos);
-                            cout << i + 1 << "º. " << camp->getAutodromoCampeonato()[camp->getActualAutodromo()]->getClassificacao()[i]->getID() << "  //   ->"
-                                    << camp->getAutodromoCampeonato()[camp->getActualAutodromo()]->getClassificacao()[i]->getPiloto()->getNome() << " --------- " << pontos << "pts\n";
-                            pontos -= 2;
-                            if (pontos <= 0) {
-                                pontos = 0;
+                        int num = 0;
+                        for (int i = 0; i < camp->getAutodromoCampeonato()[camp->getActualAutodromo()]->getCorrida().size(); i++) {
+                            if (camp->getAutodromoCampeonato()[camp->getActualAutodromo()]->getCorrida()[i]->getDanificado()) {
+                                num++;
                             }
                         }
-                        Carro * p;
-                        vector <Carro * > cla = camp->getConcorrentes();
-                        cout << "----------Classificacao actual do campeonato---------\n";
-                        for (int i = 0; i < cla.size() - 1; i++) {
-                            if (cla[i]->getPiloto()->getPontos() < cla[i + 1]->getPiloto()->getPontos()) {
-                                p = cla[i + 1];
-                                cla[i + 1] = cla[i];
-                                cla[i] = p;
-                                i = -1;
+                        if (num == camp->getAutodromoCampeonato()[camp->getActualAutodromo()]->getCorrida().size()) {
+                            for (int i = 0; i < camp->getAutodromoCampeonato()[camp->getActualAutodromo()]->getClassificacao().size(); i++) {
+                                cout << i + 1 << "º. " << camp->getAutodromoCampeonato()[camp->getActualAutodromo()]->getClassificacao()[i]->getPiloto()->getNome() << "   ------------->"
+                                        << camp->getAutodromoCampeonato()[camp->getActualAutodromo()]->getClassificacao()[i]->getPiloto()->getPontos() << "pts\n";
                             }
+                        } else {
+                            int pontos = 10;
+                            cout << "----------Classificacao final da corrida---------\n";
+                            for (int i = 0; i < camp->getAutodromoCampeonato()[camp->getActualAutodromo()]->getClassificacao().size(); i++) {
+                                if (!camp->getAutodromoCampeonato()[camp->getActualAutodromo()]->getClassificacao()[i]->getDanificado()) {
+                                    camp->getAutodromoCampeonato()[camp->getActualAutodromo()]->getClassificacao()[i]->getPiloto()->setPontos(pontos);
+                                    cout << i + 1 << "º. " << camp->getAutodromoCampeonato()[camp->getActualAutodromo()]->getClassificacao()[i]->getID() << "  //   ->"
+                                            << camp->getAutodromoCampeonato()[camp->getActualAutodromo()]->getClassificacao()[i]->getPiloto()->getNome() << " --------- " << pontos << "pts\n";
+                                    pontos -= 2;
+                                    if (pontos <= 0) {
+                                        pontos = 0;
+                                    }
+                                }
+                            }
+                            Carro * p;
+                            vector <Carro * > cla = camp->getConcorrentes();
+                            cout << "----------Classificacao actual do campeonato---------\n";
+                            for (int i = 0; i < cla.size() - 1; i++) {
+                                if (cla[i]->getPiloto()->getPontos() < cla[i + 1]->getPiloto()->getPontos()) {
+                                    p = cla[i + 1];
+                                    cla[i + 1] = cla[i];
+                                    cla[i] = p;
+                                    i = -1;
+                                }
+                            }
+                            for (int i = 0; i < cla.size(); i++) {
+                                cout << i + 1 << "º. " << cla[i]->getPiloto()->getNome() << "   ------------->"
+                                        << cla[i]->getPiloto()->getPontos() << "pts\n";
+                            }
+                            //classificacao e atribuicao de pontos para campeonato
+
                         }
-                        for (int i = 0; i < cla.size(); i++) {
-                            cout << i + 1 << "º. " << cla[i]->getPiloto()->getNome() << "   ------------->"
-                                    << cla[i]->getPiloto()->getPontos() << "pts\n";
-                        }
-                        //classificacao e atribuicao de pontos para campeonato
                         if (camp->getActualAutodromo() == camp->getAutodromoCampeonato().size() - 1) {
                             imprimeLog("Campeonato acabou !\n");
                             return false;
@@ -743,7 +772,9 @@ void TextUI::comandoPassaTempo(int passa) {
         for (int j = 0; j < camp->getAutodromoCampeonato()[camp->getActualAutodromo()]->getClassificacao().size(); j++) {
             cl.push_back(camp->getAutodromoCampeonato()[camp->getActualAutodromo()]->getClassificacao()[j]);
         }
-        camp->getAutodromoCampeonato()[camp->getActualAutodromo()]->passaUmSegundo();
+        if (camp->getAutodromoCampeonato()[camp->getActualAutodromo()]->passaUmSegundo()) {
+            break;
+        }
         // Ver como se algum carro ficou danificado ou sinal de emergencia activado
         for (int j = 0; j < camp->getAutodromoCampeonato()[camp->getActualAutodromo()]->getClassificacao().size(); j++) {
             if (camp->getAutodromoCampeonato()[camp->getActualAutodromo()]->getClassificacao()[j]->getCapActual() <= 0) {
